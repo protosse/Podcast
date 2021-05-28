@@ -5,6 +5,7 @@ PODS:
   - FeedKit (9.1.2)
   - FileKit (5.2.0)
   - FRadioPlayer (0.1.22)
+  - HandyJSON (5.0.2)
   - Kingfisher (6.3.0)
   - lottie-ios (3.2.3)
   - Moya/Combine (15.0.0-alpha.1):
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - FeedKit
   - FileKit
   - FRadioPlayer
+  - HandyJSON
   - Kingfisher
   - lottie-ios
   - Moya/Combine (= 15.0.0-alpha.1)
@@ -46,6 +48,7 @@ SPEC REPOS:
     - FeedKit
     - FileKit
     - FRadioPlayer
+    - HandyJSON
     - Kingfisher
     - lottie-ios
     - Moya
@@ -64,6 +67,7 @@ SPEC CHECKSUMS:
   FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
   FileKit: 10bfd8a3023a0b09f24c9f49546cbbddf43fd464
   FRadioPlayer: 7c6173cc44a3be39a9419abd3a931d9223e175e4
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   Moya: 101c94dfb29289736ecd20fa6e82bea665e0671b
@@ -75,6 +79,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
   Tiercel: 94b817f76bcdb7c86290b3dbd945048e94c6c153
 
-PODFILE CHECKSUM: 572c6d0215771e2c47a75a78751731ace7f4ea11
+PODFILE CHECKSUM: 290757ebbef09fdb691323619cd4cefa4a2baa8e
 
 COCOAPODS: 1.10.1

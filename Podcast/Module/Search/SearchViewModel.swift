@@ -9,12 +9,42 @@ import Combine
 import Foundation
 
 class SearchViewModel: ObservableObject, HasSubscriptions {
-    @Published var dataSource: [TopPodcast] = []
+    @Published var dataSource: [Podcast] = []
+    var page = 1
 
-    func request() {
+    func requestTopPodcasts() {
         ITunesService.share
-            .topPodcasts(limit: 50, country: .cn)
-            .sink { _ in } receiveValue: { [weak self] data in
+            .topPodcasts(limit: 20, country: .cn)
+            .sink { completeion in
+                switch completeion {
+                case .finished:
+                    print(#function, "finished")
+                case let .failure(error):
+                    print(#function, error)
+                }
+            } receiveValue: { [weak self] data in
+                self?.dataSource = data
+            }
+            .store(in: &subscriptions)
+    }
+
+    func search(text: String, loadMore: Bool = false) {
+        if loadMore {
+            page += 1
+        } else {
+            page = 1
+        }
+
+        ITunesService.share
+            .search(text, page: page)
+            .sink { completeion in
+                switch completeion {
+                case .finished:
+                    print(#function, "finished")
+                case let .failure(error):
+                    print(#function, error)
+                }
+            } receiveValue: { [weak self] data in
                 self?.dataSource = data
             }
             .store(in: &subscriptions)

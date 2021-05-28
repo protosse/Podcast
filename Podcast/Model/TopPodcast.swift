@@ -14,7 +14,7 @@ class TopPodcast: Codable, Identifiable {
     var copyright: String?
     var artistID: String?
     var artistURL: String?
-    var artworkUrl100 = ""
+    var artworkUrl100: String?
     var url: String?
     var contentAdvisoryRating: String?
 

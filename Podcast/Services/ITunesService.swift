@@ -104,12 +104,12 @@ class ITunesService {
         self.itunes = itunes
     }
 
-    func search(_ text: String, page: Int = 1) -> AnyPublisher<PodcastSearch, NetError> {
+    func search(_ text: String, page: Int = 1) -> AnyPublisher<[Podcast], NetError> {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return itunes
             .requestPublisher(.search(term: text, page: page))
-            .map(PodcastSearch.self, using: decoder)
+            .map([Podcast].self, atKeyPath: "results")
             .mapNetError()
     }
 
@@ -118,7 +118,7 @@ class ITunesService {
         decoder.dateDecodingStrategy = .iso8601
         return itunes
             .requestPublisher(.lookUp(podcastID: podcastID))
-            .map([Podcast].self, atKeyPath: "results", using: decoder)
+            .map([Podcast].self)
             .tryMap({ results -> Podcast in
                 if let result = results.first {
                     return result
@@ -129,16 +129,16 @@ class ITunesService {
             .mapNetError()
     }
 
-    func topPodcasts(limit: Int, country: ITunesCountry) -> AnyPublisher<[TopPodcast], NetError> {
+    func topPodcasts(limit: Int, country: ITunesCountry) -> AnyPublisher<[Podcast], NetError> {
         let request = itunes
             .requestPublisher(.top(limit: limit, country: country))
-            .map([TopPodcast].self, atKeyPath: "feed.results")
+            .map([Podcast].self, atKeyPath: "feed.results")
             .mapNetError()
         return request
     }
 
     func fetchEpisodes(podcast: Podcast, forceUpdate: Bool = false) -> (AnyPublisher<[Episode], NetError>, AnyPublisher<Double, MoyaError>) {
-        guard let feedUrl = podcast.feedURL, let _ = URL(string: feedUrl) else {
+        guard let feedUrl = podcast.feedUrl, let _ = URL(string: feedUrl) else {
             return (.empty(), .empty())
         }
 

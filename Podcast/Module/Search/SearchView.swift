@@ -7,12 +7,11 @@
 
 import Introspect
 import SwiftUI
-import Kingfisher
 
 struct SearchView: View {
     @State private var searchText = ""
     @Environment(\.presentationMode) var presentationMode
-    
+
     @ObservedObject var searchViewModel = SearchViewModel()
 
     var body: some View {
@@ -28,7 +27,7 @@ struct SearchView: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(searchViewModel.dataSource) { model in
-                            KFImage(URL(string: model.artworkUrl100))
+                            PodcastCell(model: model)
                         }
                     }
                 }
@@ -38,7 +37,7 @@ struct SearchView: View {
     }
 
     func load() {
-        searchViewModel.request()
+        searchViewModel.requestTopPodcasts()
     }
 
     fileprivate func searchHeader() -> some View {
@@ -54,13 +53,16 @@ struct SearchView: View {
             .padding(.trailing, 15)
 
             Image(systemName: "magnifyingglass").foregroundColor(.gray)
-            TextField("Podcast", text: $searchText)
+            TextField("Podcast", text: $searchText, onCommit: {
+                searchViewModel.search(text: searchText)
+            })
                 .foregroundColor(.white)
                 .introspectTextField {
                     $0.attributedPlaceholder = NSAttributedString(string: $0.placeholder ?? "", attributes: [.foregroundColor: UIColor.gray])
                 }
 
             Button(action: {
+                searchText = ""
             }) {
                 Text("Cancel")
             }

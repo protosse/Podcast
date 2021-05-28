@@ -17,6 +17,7 @@ target 'Podcast' do
     pod 'SwiftyBeaver'
     
     # Util
+    pod 'HandyJSON'
     pod 'FeedKit'
     pod 'FileKit'
     pod 'AcknowList'
