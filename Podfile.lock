@@ -1,0 +1,80 @@
+PODS:
+  - ACBAVPlayer (2.1)
+  - AcknowList (2.0.1)
+  - Alamofire (5.4.3)
+  - FeedKit (9.1.2)
+  - FileKit (5.2.0)
+  - FRadioPlayer (0.1.22)
+  - Kingfisher (6.3.0)
+  - lottie-ios (3.2.3)
+  - Moya/Combine (15.0.0-alpha.1):
+    - Moya/Core
+  - Moya/Core (15.0.0-alpha.1):
+    - Alamofire (~> 5.0)
+  - R.swift (5.4.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
+  - ReachabilitySwift (5.0.0)
+  - SwiftMessages (9.0.2):
+    - SwiftMessages/App (= 9.0.2)
+  - SwiftMessages/App (9.0.2)
+  - SwiftyBeaver (1.9.5)
+  - SwiftyUserDefaults (5.3.0)
+  - Tiercel (3.2.1)
+
+DEPENDENCIES:
+  - ACBAVPlayer
+  - AcknowList
+  - FeedKit
+  - FileKit
+  - FRadioPlayer
+  - Kingfisher
+  - lottie-ios
+  - Moya/Combine (= 15.0.0-alpha.1)
+  - R.swift
+  - ReachabilitySwift
+  - SwiftMessages
+  - SwiftyBeaver
+  - SwiftyUserDefaults
+  - Tiercel
+
+SPEC REPOS:
+  trunk:
+    - ACBAVPlayer
+    - AcknowList
+    - Alamofire
+    - FeedKit
+    - FileKit
+    - FRadioPlayer
+    - Kingfisher
+    - lottie-ios
+    - Moya
+    - R.swift
+    - R.swift.Library
+    - ReachabilitySwift
+    - SwiftMessages
+    - SwiftyBeaver
+    - SwiftyUserDefaults
+    - Tiercel
+
+SPEC CHECKSUMS:
+  ACBAVPlayer: 7ef1a2a6045552dc35d1b8b303908d90a3d7845e
+  AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
+  FileKit: 10bfd8a3023a0b09f24c9f49546cbbddf43fd464
+  FRadioPlayer: 7c6173cc44a3be39a9419abd3a931d9223e175e4
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  Moya: 101c94dfb29289736ecd20fa6e82bea665e0671b
+  R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SwiftMessages: 77b847d1405f99046ffbd0d856bc7d73e6892686
+  SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
+  SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
+  Tiercel: 94b817f76bcdb7c86290b3dbd945048e94c6c153
+
+PODFILE CHECKSUM: 572c6d0215771e2c47a75a78751731ace7f4ea11
+
+COCOAPODS: 1.10.1
