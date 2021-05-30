@@ -9,10 +9,15 @@ import Combine
 import Foundation
 
 class SearchViewModel: ObservableObject, HasSubscriptions {
+    var topDataSource: [Podcast] = []
     @Published var dataSource: [Podcast] = []
     var page = 1
 
     func requestTopPodcasts() {
+        guard topDataSource.isEmpty else {
+            self.dataSource = topDataSource
+            return
+        }
         ITunesService.share
             .topPodcasts(limit: 20, country: .cn)
             .sink { completeion in
@@ -23,6 +28,7 @@ class SearchViewModel: ObservableObject, HasSubscriptions {
                     print(#function, error)
                 }
             } receiveValue: { [weak self] data in
+                self?.topDataSource = data
                 self?.dataSource = data
             }
             .store(in: &subscriptions)

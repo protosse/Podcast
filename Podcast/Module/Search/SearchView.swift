@@ -63,6 +63,7 @@ struct SearchView: View {
 
             Button(action: {
                 searchText = ""
+                searchViewModel.requestTopPodcasts()
             }) {
                 Text("Cancel")
             }
