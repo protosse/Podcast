@@ -12,7 +12,7 @@ struct SearchView: View {
     @State private var searchText = ""
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var searchViewModel = SearchViewModel()
+    @ObservedObject var viewModel = SearchViewModel()
 
     var body: some View {
         ZStack {
@@ -23,10 +23,12 @@ struct SearchView: View {
                     .padding(.bottom, 5)
 
                 Color.accentColor.frame(height: 2)
+                
+                SearchHistory(tapText: $searchText)
 
                 ScrollView {
                     LazyVStack(spacing: 0) {
-                        ForEach(searchViewModel.dataSource) { model in
+                        ForEach(viewModel.dataSource) { model in
                             PodcastCell(model: model)
                         }
                     }
@@ -37,24 +39,14 @@ struct SearchView: View {
     }
 
     func load() {
-        searchViewModel.requestTopPodcasts()
+        viewModel.requestTopPodcasts()
     }
 
     fileprivate func searchHeader() -> some View {
         return HStack {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "chevron.left")
-                    .resizable()
-                    .foregroundColor(.white)
-                    .frame(width: 12, height: 20)
-            }
-            .padding(.trailing, 15)
-
             Image(systemName: "magnifyingglass").foregroundColor(.gray)
             TextField("Podcast", text: $searchText, onCommit: {
-                searchViewModel.search(text: searchText)
+                viewModel.search(text: searchText)
             })
                 .foregroundColor(.white)
                 .introspectTextField {
@@ -63,7 +55,13 @@ struct SearchView: View {
 
             Button(action: {
                 searchText = ""
-                searchViewModel.requestTopPodcasts()
+                viewModel.requestTopPodcasts()
+            }) {
+                Image(systemName: "xmark.circle.fill")
+            }
+            
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Cancel")
             }

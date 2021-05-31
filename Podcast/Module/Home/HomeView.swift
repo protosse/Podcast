@@ -22,6 +22,7 @@ struct HomeView: View {
                 }) {
                     Image(systemName: "gear")
                 }
+                
                 Button(action: {
                     self.isPresentSearch.toggle()
                 }) {

@@ -21,6 +21,10 @@
 		779A40ED2660DD9B00440C2E /* UIImage+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A40EC2660DD9B00440C2E /* UIImage+Common.swift */; };
 		779A40F02660E26400440C2E /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A40EF2660E26400440C2E /* LibraryView.swift */; };
 		779A40F22660E27200440C2E /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A40F12660E27200440C2E /* SetView.swift */; };
+		77AA48D026647CCB009D77AE /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48CF26647CCB009D77AE /* SearchHistory.swift */; };
+		77AA48D226647CD9009D77AE /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48D126647CD9009D77AE /* SearchHistoryViewModel.swift */; };
+		77AA48D826648B87009D77AE /* WrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48D726648B87009D77AE /* WrappedLayout.swift */; };
+		77AA48DB2664A357009D77AE /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA48DA2664A357009D77AE /* WrappingHStack */; };
 		77BD0AA626612404002A0A73 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD0AA526612404002A0A73 /* PodcastCell.swift */; };
 		77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */; };
 		77F4B89D265F48540050D829 /* PodcastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B89C265F48540050D829 /* PodcastApp.swift */; };
@@ -56,6 +60,9 @@
 		779A40EC2660DD9B00440C2E /* UIImage+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Common.swift"; sourceTree = "<group>"; };
 		779A40EF2660E26400440C2E /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		779A40F12660E27200440C2E /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
+		77AA48CF26647CCB009D77AE /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
+		77AA48D126647CD9009D77AE /* SearchHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewModel.swift; sourceTree = "<group>"; };
+		77AA48D726648B87009D77AE /* WrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayout.swift; sourceTree = "<group>"; };
 		77BD0AA526612404002A0A73 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+HandyJSON.swift"; sourceTree = "<group>"; };
 		77F4B899265F48540050D829 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1EE611E2D6EC568A4E4BE90 /* Pods_Podcast.framework in Frameworks */,
+				77AA48DB2664A357009D77AE /* WrappingHStack in Frameworks */,
 				77F4B917265F67890050D829 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +144,7 @@
 		779A40E52660C5CA00440C2E /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				77AA48CE26647CBA009D77AE /* Component */,
 				779A40E62660C5D600440C2E /* SearchView.swift */,
 				779A40E82660C5F700440C2E /* SearchViewModel.swift */,
 			);
@@ -156,6 +165,23 @@
 				779A40F12660E27200440C2E /* SetView.swift */,
 			);
 			path = Set;
+			sourceTree = "<group>";
+		};
+		77AA48CE26647CBA009D77AE /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				77AA48CF26647CCB009D77AE /* SearchHistory.swift */,
+				77AA48D126647CD9009D77AE /* SearchHistoryViewModel.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		77AA48D626648B7F009D77AE /* WrappedLayout */ = {
+			isa = PBXGroup;
+			children = (
+				77AA48D726648B87009D77AE /* WrappedLayout.swift */,
+			);
+			path = WrappedLayout;
 			sourceTree = "<group>";
 		};
 		77F4B890265F48540050D829 = {
@@ -228,6 +254,7 @@
 		77F4B8CB265F50740050D829 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				77AA48D626648B7F009D77AE /* WrappedLayout */,
 				779A40CD2660888F00440C2E /* VisualEffectView */,
 				77F4B92B265F9F600050D829 /* HasSubscriptions */,
 			);
@@ -297,6 +324,7 @@
 				77F4B896265F48540050D829 /* Frameworks */,
 				77F4B897265F48540050D829 /* Resources */,
 				121F2F3ECD6448EEFA4E1CDB /* [CP] Embed Pods Frameworks */,
+				77AA48CD2664775F009D77AE /* BuildNum */,
 			);
 			buildRules = (
 			);
@@ -305,6 +333,7 @@
 			name = Podcast;
 			packageProductDependencies = (
 				77F4B916265F67890050D829 /* Introspect */,
+				77AA48DA2664A357009D77AE /* WrappingHStack */,
 			);
 			productName = Podcast;
 			productReference = 77F4B899265F48540050D829 /* Podcast.app */;
@@ -335,6 +364,7 @@
 			mainGroup = 77F4B890265F48540050D829;
 			packageReferences = (
 				77F4B915265F67890050D829 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				77AA48D92664A357009D77AE /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 			);
 			productRefGroup = 77F4B89A265F48540050D829 /* Products */;
 			projectDirPath = "";
@@ -374,6 +404,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Podcast/Pods-Podcast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		77AA48CD2664775F009D77AE /* BuildNum */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = BuildNum;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "cd ${SOURCE_ROOT}\nbuildPlist=${SOURCE_ROOT}/${PROJECT_NAME}/Info.plist\nPlistBuddy=\"/usr/libexec/PlistBuddy\"\n\nbuildNumber=`git rev-list HEAD --count`\nbuildNumber=$(($buildNumber + 1))\n\n$PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" $buildPlist\n";
 		};
 		77F4B8B4265F48B50050D829 /* R.Swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -435,11 +483,14 @@
 				77F4B89F265F48540050D829 /* ContentView.swift in Sources */,
 				779A40ED2660DD9B00440C2E /* UIImage+Common.swift in Sources */,
 				779A40E02660B76500440C2E /* Episode.swift in Sources */,
+				77AA48D226647CD9009D77AE /* SearchHistoryViewModel.swift in Sources */,
 				77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */,
 				779A40DC26609F6600440C2E /* NetError+map.swift in Sources */,
 				779A40F22660E27200440C2E /* SetView.swift in Sources */,
+				77AA48D826648B87009D77AE /* WrappedLayout.swift in Sources */,
 				779A40D6266090A900440C2E /* Config.swift in Sources */,
 				779A40CF266088AA00440C2E /* VisualEffectView.swift in Sources */,
+				77AA48D026647CCB009D77AE /* SearchHistory.swift in Sources */,
 				77F4B91D265F73AA0050D829 /* R.generated.swift in Sources */,
 				77F4B925265F8E7D0050D829 /* Podcast.swift in Sources */,
 				779A40EB2660CDCB00440C2E /* UIStyleExtension.swift in Sources */,
@@ -641,6 +692,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		77AA48D92664A357009D77AE /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com.cnpmjs.org/dkk/WrappingHStack.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
 		77F4B915265F67890050D829 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com.cnpmjs.org/siteline/SwiftUI-Introspect.git";
@@ -652,6 +711,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		77AA48DA2664A357009D77AE /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77AA48D92664A357009D77AE /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
 		77F4B916265F67890050D829 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 77F4B915265F67890050D829 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
