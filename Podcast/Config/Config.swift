@@ -29,6 +29,6 @@ let log: SwiftyBeaver.Type = {
 
 extension DefaultsKeys {
     var historyTags: DefaultsKey<[String]> {
-        return .init("historyTags", defaultValue: [String]())
+        return .init("historyTags", defaultValue: [])
     }
 }

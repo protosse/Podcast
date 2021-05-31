@@ -9,7 +9,6 @@ import Introspect
 import SwiftUI
 
 struct SearchView: View {
-    @State private var searchText = ""
     @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject var viewModel = SearchViewModel()
@@ -23,10 +22,10 @@ struct SearchView: View {
                     .padding(.bottom, 5)
 
                 Color.accentColor.frame(height: 2)
-                
-                SearchHistory(tapText: $searchText)
 
                 ScrollView {
+                    SearchHistory(tapText: viewModel.tapSubject,
+                                  searchText: viewModel.searchSubject.eraseToAnyPublisher())
                     LazyVStack(spacing: 0) {
                         ForEach(viewModel.dataSource) { model in
                             PodcastCell(model: model)
@@ -45,8 +44,8 @@ struct SearchView: View {
     fileprivate func searchHeader() -> some View {
         return HStack {
             Image(systemName: "magnifyingglass").foregroundColor(.gray)
-            TextField("Podcast", text: $searchText, onCommit: {
-                viewModel.search(text: searchText)
+            TextField("Podcast", text: $viewModel.searchText, onCommit: {
+                viewModel.search()
             })
                 .foregroundColor(.white)
                 .introspectTextField {
@@ -54,12 +53,12 @@ struct SearchView: View {
                 }
 
             Button(action: {
-                searchText = ""
+                viewModel.searchText = ""
                 viewModel.requestTopPodcasts()
             }) {
                 Image(systemName: "xmark.circle.fill")
             }
-            
+
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {

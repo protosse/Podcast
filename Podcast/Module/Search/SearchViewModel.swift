@@ -13,9 +13,24 @@ class SearchViewModel: ObservableObject, HasSubscriptions {
     @Published var dataSource: [Podcast] = []
     var page = 1
 
+    @Published var searchText = ""
+
+    var tapSubject = PassthroughSubject<String, Never>()
+    var searchSubject = PassthroughSubject<String, Never>()
+
+    init() {
+        tapSubject
+            .dropFirst()
+            .sink { [weak self] str in
+                self?.searchText = str
+                self?.search()
+            }
+            .store(in: &subscriptions)
+    }
+
     func requestTopPodcasts() {
         guard topDataSource.isEmpty else {
-            self.dataSource = topDataSource
+            dataSource = topDataSource
             return
         }
         ITunesService.share
@@ -34,15 +49,16 @@ class SearchViewModel: ObservableObject, HasSubscriptions {
             .store(in: &subscriptions)
     }
 
-    func search(text: String, loadMore: Bool = false) {
+    func search(loadMore: Bool = false) {
         if loadMore {
             page += 1
         } else {
             page = 1
         }
 
+        searchSubject.send(searchText)
         ITunesService.share
-            .search(text, page: page)
+            .search(searchText, page: page)
             .sink { completeion in
                 switch completeion {
                 case .finished:
