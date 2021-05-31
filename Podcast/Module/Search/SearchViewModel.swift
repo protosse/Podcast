@@ -17,8 +17,8 @@ class SearchViewModel: ObservableObject, HasSubscriptions {
 
     var tapSubject = PassthroughSubject<String, Never>()
     var searchSubject = PassthroughSubject<String, Never>()
-
-    init() {
+    
+    func bind() {
         tapSubject
             .dropFirst()
             .sink { [weak self] str in

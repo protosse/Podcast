@@ -118,7 +118,7 @@ class ITunesService {
         decoder.dateDecodingStrategy = .iso8601
         return itunes
             .requestPublisher(.lookUp(podcastID: podcastID))
-            .map([Podcast].self)
+            .map([Podcast].self, atKeyPath: "results")
             .tryMap({ results -> Podcast in
                 if let result = results.first {
                     return result

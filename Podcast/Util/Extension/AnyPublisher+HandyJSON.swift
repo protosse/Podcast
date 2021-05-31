@@ -19,11 +19,11 @@ public extension AnyPublisher where Output == Response, Failure == MoyaError {
     func map<D: HandyJSON>(_ type: D.Type, atKeyPath keyPath: String? = nil) -> AnyPublisher<D, MoyaError> {
         return unwrapThrowable { response in
             let str = try response.mapString()
+            log.debug("Request: \(response.request?.httpMethod ?? "") \(response.request?.url?.absoluteString ?? "")")
+            log.debug(str)
             guard let m = D.deserialize(from: str, designatedPath: keyPath) else {
                 throw MoyaError.jsonMapping(response)
             }
-            log.debug("Request: \(response.request?.httpMethod ?? "") \(response.request?.url?.absoluteString ?? "")")
-            log.debug(str)
             return m
         }
     }
@@ -31,11 +31,11 @@ public extension AnyPublisher where Output == Response, Failure == MoyaError {
     func map<D: HandyJSON>(_ type: [D].Type, atKeyPath keyPath: String? = nil) -> AnyPublisher<[D], MoyaError> {
         return unwrapThrowable { response in
             let str = try response.mapString()
+            log.debug("Request: \(response.request?.httpMethod ?? "") \(response.request?.url?.absoluteString ?? "")")
+            log.debug(str)
             guard let m = [D].deserialize(from: str, designatedPath: keyPath) else {
                 throw MoyaError.jsonMapping(response)
             }
-            log.debug("Request: \(response.request?.httpMethod ?? "") \(response.request?.url?.absoluteString ?? "")")
-            log.debug(str)
             return m.compactMap{ $0 }
         }
     }

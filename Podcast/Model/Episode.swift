@@ -7,7 +7,7 @@
 
 import FeedKit
 
-class Episode {
+class Episode: Identifiable {
     var title: String?
     var pubDate: Date?
     var desc: String?

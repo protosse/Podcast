@@ -7,6 +7,8 @@ target 'Podcast' do
     # UI
     pod 'lottie-ios'
     pod 'SwiftMessages'
+    pod 'JXPagingView/Paging'
+    pod 'JXSegmentedView'
     
     # Network
     pod 'Moya/Combine', '15.0.0-alpha.1'
@@ -17,6 +19,9 @@ target 'Podcast' do
     pod 'SwiftyBeaver'
     
     # Util
+    pod 'PinLayout'
+    pod 'Then'
+    pod 'SwifterSwift'
     pod 'HandyJSON'
     pod 'FeedKit'
     pod 'FileKit'

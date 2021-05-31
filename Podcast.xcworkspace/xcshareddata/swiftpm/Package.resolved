@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Refresh",
+        "repositoryURL": "https://github.com.cnpmjs.org/wxxsw/Refresh.git",
+        "state": {
+          "branch": "master",
+          "revision": "05a4667b8250c7cce0156882bf6385a5108ae6f0",
+          "version": null
+        }
+      },
+      {
         "package": "Introspect",
         "repositoryURL": "https://github.com.cnpmjs.org/siteline/SwiftUI-Introspect.git",
         "state": {
