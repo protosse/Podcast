@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7769F1FB2665C5F200806BEA /* Kingfisher+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */; };
+		7769F1FD2665C6B000806BEA /* PodcastDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */; };
+		7769F2012665FD2B00806BEA /* PodcastDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */; };
+		7769F2032665FD6800806BEA /* PodcastDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2022665FD6800806BEA /* PodcastDetailListViewController.swift */; };
 		77898CD62664E43800C3AEFA /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CD52664E43800C3AEFA /* EpisodeCell.swift */; };
 		77898CD92664E7AD00C3AEFA /* PlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CD82664E7AD00C3AEFA /* PlaceholderTextField.swift */; };
 		77898CDB2664EE2900C3AEFA /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CDA2664EE2900C3AEFA /* PodcastDetailViewController.swift */; };
@@ -56,6 +60,10 @@
 		07016A6B480F07A48B0D57FF /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
 		1BEB8A59892DE86A71F05A17 /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
 		3849D3574B1AAD9301A5F07E /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Common.swift"; sourceTree = "<group>"; };
+		7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailHeaderView.swift; sourceTree = "<group>"; };
+		7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailContentViewController.swift; sourceTree = "<group>"; };
+		7769F2022665FD6800806BEA /* PodcastDetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailListViewController.swift; sourceTree = "<group>"; };
 		77898CD52664E43800C3AEFA /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		77898CD82664E7AD00C3AEFA /* PlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextField.swift; sourceTree = "<group>"; };
 		77898CDA2664EE2900C3AEFA /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
@@ -134,8 +142,12 @@
 		77898CD42664E42A00C3AEFA /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				77898CDF2664EF5D00C3AEFA /* GradientLineView.swift */,
 				77898CD52664E43800C3AEFA /* EpisodeCell.swift */,
+				77898CDF2664EF5D00C3AEFA /* GradientLineView.swift */,
+				7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */,
+				77898CDA2664EE2900C3AEFA /* PodcastDetailViewController.swift */,
+				7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */,
+				7769F2022665FD6800806BEA /* PodcastDetailListViewController.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -184,6 +196,7 @@
 				779A40E12660BB5000440C2E /* Combine+Common.swift */,
 				779A40EC2660DD9B00440C2E /* UIImage+Common.swift */,
 				77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */,
+				7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -247,7 +260,6 @@
 				77898CD42664E42A00C3AEFA /* Component */,
 				77AA48EB2664CB5C009D77AE /* PodcastView.swift */,
 				77AA48ED2664CB66009D77AE /* PodcastViewModel.swift */,
-				77898CDA2664EE2900C3AEFA /* PodcastDetailViewController.swift */,
 			);
 			path = Podcast;
 			sourceTree = "<group>";
@@ -543,13 +555,16 @@
 				779A40F02660E26400440C2E /* LibraryView.swift in Sources */,
 				77AA48EC2664CB5C009D77AE /* PodcastView.swift in Sources */,
 				77F4B920265F8CAA0050D829 /* ITunesService.swift in Sources */,
+				7769F1FD2665C6B000806BEA /* PodcastDetailHeaderView.swift in Sources */,
 				77898CDE2664EE6A00C3AEFA /* BaseViewController.swift in Sources */,
 				779A40E22660BB5000440C2E /* Combine+Common.swift in Sources */,
 				77F4B91A265F6A650050D829 /* MiniPlayerView.swift in Sources */,
 				77F4B89F265F48540050D829 /* ContentView.swift in Sources */,
 				779A40ED2660DD9B00440C2E /* UIImage+Common.swift in Sources */,
+				7769F2012665FD2B00806BEA /* PodcastDetailContentViewController.swift in Sources */,
 				77AA48F42664CF2C009D77AE /* SearchView.swift in Sources */,
 				779A40E02660B76500440C2E /* Episode.swift in Sources */,
+				7769F2032665FD6800806BEA /* PodcastDetailListViewController.swift in Sources */,
 				77AA48EE2664CB66009D77AE /* PodcastViewModel.swift in Sources */,
 				77AA48D226647CD9009D77AE /* SearchHistoryViewModel.swift in Sources */,
 				77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */,
@@ -571,6 +586,7 @@
 				779A40D326608B9C00440C2E /* SwiftUI+Common.swift in Sources */,
 				77BD0AA626612404002A0A73 /* PodcastCell.swift in Sources */,
 				77898CDB2664EE2900C3AEFA /* PodcastDetailViewController.swift in Sources */,
+				7769F1FB2665C5F200806BEA /* Kingfisher+Common.swift in Sources */,
 				77F4B92D265F9F730050D829 /* HasSubscriptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,6 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
     deinit {
         log.debug("\(self) deinit")
     }
@@ -24,17 +23,15 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.vio.Shark
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        view.backgroundColor = R.color.defaultBackground()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if self.navigationController?.isNavigationBarHidden != isHideNavigationWhenWillAppear {
-            self.navigationController?.setNavigationBarHidden(isHideNavigationWhenWillAppear, animated: animated)
+        if navigationController?.isNavigationBarHidden != isHideNavigationWhenWillAppear {
+            navigationController?.setNavigationBarHidden(isHideNavigationWhenWillAppear, animated: animated)
         }
     }
-
 }
-

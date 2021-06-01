@@ -18,6 +18,8 @@ class Podcast: HandyJSON, Identifiable {
     var artworkUrl100: String?
     var artworkUrl600: String?
     var releaseDate: String?
+    
+    var isSaved = false
 
     func mapping(mapper: HelpingMapper) {
         mapper <<< id <-- ["id", "trackId"]
