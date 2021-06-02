@@ -20,7 +20,6 @@ class SearchViewModel: ObservableObject, HasSubscriptions {
     
     func bind() {
         tapSubject
-            .dropFirst()
             .sink { [weak self] str in
                 self?.searchText = str
                 self?.search()

@@ -6,10 +6,19 @@
 //
 
 import JXPagingView
+import MGSwipeTableCell
 import UIKit
 
-class PodcastDetailListViewController: BaseViewController {
+class PodcastDetailListViewController: BaseViewController, BindableType, HasSubscriptions {
     var listViewDidScrollCallback: ((UIScrollView) -> Void)?
+
+    var viewModel: PodcastViewModel!
+
+    var dataSource: [Episode] = []
+
+    override var isHideNavigationWhenWillAppear: Bool {
+        return true
+    }
 
     lazy var tableView = UITableView(frame: .zero, style: .plain).then {
         $0.backgroundColor = R.color.defaultBackground()
@@ -23,22 +32,82 @@ class PodcastDetailListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let loadingView = LoadingView(isPlayGame: true)
+        loadingView.configAnimationLayout = { $0.top = 30 }
+        self.loadingView = loadingView
         configTableView()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.pin.top().left().right().bottom(view.pin.safeArea)
+    }
+
     func configTableView() {
+        tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(cellWithClass: EpisodeTableViewCell.self)
         view.addSubview(tableView)
+    }
+
+    func bindViewModel() {
+        viewModel.$dataSource
+            .dropFirst()
+            .sink(receiveValue: { [weak self] data in
+                self?.dataSource = data
+                self?.tableView.reloadData()
+
+                // 如果在tableView中直接使用viewModel.dataSource
+                // reloadData会出现dataSource没有更新的情况
+                // 必须delay一定时间才能获取到更新的数据
+            })
+            .store(in: &subscriptions)
+
+        viewModel.$refreshState.removeDuplicates()
+            .sink { [weak self] state in
+                switch state {
+                case .content:
+                    self?.endLoading()
+                case .loading:
+                    self?.startLoading()
+                case .error:
+                    self?.endLoading()
+                case .empty:
+                    break
+                }
+            }
+            .store(in: &subscriptions)
+
+        viewModel.fetchEpisode()
     }
 }
 
 extension PodcastDetailListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return dataSource.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withClass: EpisodeTableViewCell.self)
+        let model = dataSource[indexPath.row]
+        cell.configure(with: model)
+
+//        let download = MGSwipeButton(title: "Download", icon: nil, backgroundColor: cell.backgroundColor, callback: { [weak self] cell -> Bool in
+//            guard let self = self, let cell = cell as? EpisodeTableViewCell else { return true }
+//            return true
+//        })
+//
+//        let delete = MGSwipeButton(title: "Delete", icon: nil, backgroundColor: cell.backgroundColor, callback: { _ -> Bool in
+//            true
+//        })
+//
+//        let buttons = [delete, download]
+//        buttons.forEach {
+//            $0.setTitleColor(.white, for: .normal)
+//        }
+//        cell.rightButtons = buttons
+//        cell.swipeBackgroundColor = .clear
+        return cell
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -59,5 +128,11 @@ extension PodcastDetailListViewController: JXPagingViewListViewDelegate {
 
     func listViewDidScrollCallback(callback: @escaping (UIScrollView) -> Void) {
         listViewDidScrollCallback = callback
+    }
+}
+
+extension PodcastDetailListViewController: StatefulViewController {
+    func hasContent() -> Bool {
+        return !dataSource.isEmpty
     }
 }

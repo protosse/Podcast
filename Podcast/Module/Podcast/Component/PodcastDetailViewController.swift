@@ -7,12 +7,13 @@
 
 import JXPagingView
 import JXSegmentedView
+import MJRefresh
 import PinLayout
 import SwiftUI
 import Then
 import UIKit
 
-class PodcastDetailViewController: BaseViewController {
+class PodcastDetailViewController: BaseViewController, HasSubscriptions {
     enum Segment: Int, CaseIterable {
         case list, detal
 
@@ -30,19 +31,22 @@ class PodcastDetailViewController: BaseViewController {
         }
     }
 
+    override var isHideNavigationWhenWillAppear: Bool {
+        return true
+    }
+
     var pagingView: JXPagingView!
 
     lazy var segmentedViewDataSource: JXSegmentedTitleDataSource = {
         let dataSource = JXSegmentedTitleDataSource()
         dataSource.titles = Segment.titles
-        dataSource.titleNormalColor = UIColor.white.withAlphaComponent(0.6)
-        dataSource.titleSelectedColor = UIColor.white
+        dataSource.titleNormalColor = .white.withAlphaComponent(0.6)
+        dataSource.titleSelectedColor = .white
         dataSource.isTitleColorGradientEnabled = true
-        dataSource.reloadData(selectedIndex: 0)
         return dataSource
     }()
 
-    lazy var segmentedView = JXSegmentedView().then {
+    lazy var segmentedView = JXSegmentedView(frame: .init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)).then {
         let line = JXSegmentedIndicatorLineView()
         line.indicatorWidth = 40
         line.indicatorColor = R.color.accentColor() ?? .red
@@ -50,21 +54,13 @@ class PodcastDetailViewController: BaseViewController {
         $0.backgroundColor = R.color.defaultBackground()
     }
 
-    lazy var lineView = GradientLineView().then {
-        let color = R.color.accentColor() ?? .red
-        $0.gradientColors = [color, color, color].map { $0.cgColor }
-        $0.gradientAnimateColors = [color, color.adjust(by: 1.5), color].map { $0.cgColor }
-    }
-
     lazy var headerView = PodcastDetailHeaderView()
 
-    lazy var listVC = PodcastDetailListViewController()
+    var viewModel: PodcastViewModel!
 
-    var podcast: Podcast!
-
-    init(podcast: Podcast) {
+    init(viewModel: PodcastViewModel) {
         super.init(nibName: nil, bundle: nil)
-        self.podcast = podcast
+        self.viewModel = viewModel
     }
 
     required init?(coder: NSCoder) {
@@ -74,24 +70,36 @@ class PodcastDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(lineView)
-
         headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)
-        headerView.configure(with: podcast)
+        headerView.configure(with: viewModel.podcast)
+
+        segmentedView.delegate = self
         segmentedView.dataSource = segmentedViewDataSource
+
         pagingView = JXPagingView(delegate: self)
         pagingView.mainTableView.backgroundColor = R.color.defaultBackground()
         view.addSubview(pagingView)
         segmentedView.listContainer = pagingView.listContainerView
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let popGesture = navigationController?.interactivePopGestureRecognizer {
+            popGesture.isEnabled = (segmentedView.selectedIndex == 0)
+            pagingView.listContainerView.scrollView.panGestureRecognizer.require(toFail: popGesture)
+            pagingView.mainTableView.panGestureRecognizer.require(toFail: popGesture)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        lineView.pin.top().left().right().height(2)
-        pagingView.pin.below(of: lineView).left().right().bottom(view.pin.safeArea)
-
-        segmentedView.frame = CGRect(x: 0, y: 0, width: view.width, height: 50)
+        pagingView.pin.top().left().right().bottom(view.pin.safeArea)
     }
 }
 
@@ -120,20 +128,30 @@ extension PodcastDetailViewController: JXPagingViewDelegate {
         let segment = Segment(rawValue: index)!
         switch segment {
         case .list:
-            return listVC
+            let vc = PodcastDetailListViewController()
+            vc.bind(to: viewModel)
+            return vc
         case .detal:
-            return listVC
+            let vc = PodcastDetailContentViewController()
+            vc.bind(to: viewModel)
+            return vc
         }
     }
 }
 
 extension JXPagingListContainerView: JXSegmentedViewListContainer {}
 
+extension PodcastDetailViewController: JXSegmentedViewDelegate {
+    func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = (index == 0)
+    }
+}
+
 struct PodcastDetailRepresentation: UIViewControllerRepresentable {
-    var podcast: Podcast
+    var viewModel: PodcastViewModel
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<PodcastDetailRepresentation>) -> PodcastDetailViewController {
-        return PodcastDetailViewController(podcast: podcast)
+        return PodcastDetailViewController(viewModel: viewModel)
     }
 
     func updateUIViewController(

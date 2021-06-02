@@ -35,6 +35,7 @@ class PodcastDetailHeaderView: UIView {
         super.init(frame: frame)
 
         self.backgroundColor = R.color.defaultBackground()
+        addSubviews([contentImageView, titleLabel, authLabel, collectButton])
     }
     
     required init?(coder aDecoder: NSCoder) {

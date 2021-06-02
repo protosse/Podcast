@@ -137,21 +137,19 @@ class ITunesService {
         return request
     }
 
-    func fetchEpisodes(podcast: Podcast, forceUpdate: Bool = false) -> (AnyPublisher<[Episode], NetError>, AnyPublisher<Double, MoyaError>) {
-        guard let feedUrl = podcast.feedUrl, let _ = URL(string: feedUrl) else {
-            return (.empty(), .empty())
-        }
-
+    func fetchEpisodes(feedUrl: String, forceUpdate: Bool = false) -> (AnyPublisher<([Episode], String?), NetError>, AnyPublisher<Double, NetError>) {
         let request = itunes.requestWithProgressPublisher(.episode(url: feedUrl))
-        let progress = request.filterProgress()
+        let progress = request.filterProgress().removeDuplicates().mapNetError()
         let data = request
             .filterCompleted()
-            .tryMap { response -> [Episode] in
+            .tryMap { response -> ([Episode], String?) in
                 let result = FeedParser(data: response.data).parse()
                 switch result {
                 case let .success(f):
                     if let feed = f.rssFeed {
-                        return feed.toEpisodes()
+                        log.debug("fetchEpisodes \(feedUrl)")
+                        log.debug(feed.iTunes?.iTunesSummary ?? "")
+                        return (feed.toEpisodes(), feed.iTunes?.iTunesSummary)
                     } else {
                         throw NetError.tip("No Feed")
                     }

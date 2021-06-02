@@ -7,15 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7753739126672AEF00AF8C82 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738326672AEF00AF8C82 /* GameViewController.swift */; };
+		7753739226672AEF00AF8C82 /* WaitingForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738426672AEF00AF8C82 /* WaitingForTap.swift */; };
+		7753739326672AEF00AF8C82 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738526672AEF00AF8C82 /* GameOver.swift */; };
+		7753739426672AEF00AF8C82 /* BallTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7753738726672AEF00AF8C82 /* BallTrail.sks */; };
+		7753739526672AEF00AF8C82 /* BrokenPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7753738826672AEF00AF8C82 /* BrokenPlatform.sks */; };
+		7753739626672AEF00AF8C82 /* Playing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738926672AEF00AF8C82 /* Playing.swift */; };
+		7753739726672AEF00AF8C82 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7753738A26672AEF00AF8C82 /* GameScene.sks */; };
+		7753739826672AEF00AF8C82 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738B26672AEF00AF8C82 /* GameScene.swift */; };
+		7753739926672AEF00AF8C82 /* StatefulPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738D26672AEF00AF8C82 /* StatefulPlaceholderView.swift */; };
+		7753739A26672AEF00AF8C82 /* StatefulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738E26672AEF00AF8C82 /* StatefulViewController.swift */; };
+		7753739B26672AEF00AF8C82 /* ViewStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738F26672AEF00AF8C82 /* ViewStateMachine.swift */; };
+		7753739C26672AEF00AF8C82 /* StatefulViewControllerImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753739026672AEF00AF8C82 /* StatefulViewControllerImplementation.swift */; };
+		775373A526672BD800AF8C82 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373A326672BD800AF8C82 /* EmptyView.swift */; };
+		775373A626672BD800AF8C82 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373A426672BD800AF8C82 /* LoadingView.swift */; };
+		775373A826672BEC00AF8C82 /* Animation in Resources */ = {isa = PBXBuildFile; fileRef = 775373A726672BEC00AF8C82 /* Animation */; };
+		775373AA26674FA600AF8C82 /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373A926674FA600AF8C82 /* BindableType.swift */; };
+		775373AD2667578700AF8C82 /* UIControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373AC2667578700AF8C82 /* UIControl+Combine.swift */; };
 		7769F1FB2665C5F200806BEA /* Kingfisher+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */; };
 		7769F1FD2665C6B000806BEA /* PodcastDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */; };
 		7769F2012665FD2B00806BEA /* PodcastDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */; };
 		7769F2032665FD6800806BEA /* PodcastDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2022665FD6800806BEA /* PodcastDetailListViewController.swift */; };
-		77898CD62664E43800C3AEFA /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CD52664E43800C3AEFA /* EpisodeCell.swift */; };
+		7769F2052666323800806BEA /* UIView+Positioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2042666323800806BEA /* UIView+Positioning.swift */; };
+		7769F2072666355800806BEA /* EpisodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2062666355800806BEA /* EpisodeTableViewCell.swift */; };
+		7769F20B26663A6200806BEA /* CancelableTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F20826663A6100806BEA /* CancelableTask.swift */; };
+		7769F20C26663A6200806BEA /* RealtimeAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F20926663A6100806BEA /* RealtimeAnalyzer.swift */; };
 		77898CD92664E7AD00C3AEFA /* PlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CD82664E7AD00C3AEFA /* PlaceholderTextField.swift */; };
 		77898CDB2664EE2900C3AEFA /* PodcastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CDA2664EE2900C3AEFA /* PodcastDetailViewController.swift */; };
 		77898CDE2664EE6A00C3AEFA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CDD2664EE6A00C3AEFA /* BaseViewController.swift */; };
-		77898CE02664EF5D00C3AEFA /* GradientLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CDF2664EF5D00C3AEFA /* GradientLineView.swift */; };
 		77898CE42664EFDD00C3AEFA /* UIColor+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CE22664EFDD00C3AEFA /* UIColor+Gradient.swift */; };
 		77898CE52664EFDD00C3AEFA /* UINavigationController+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77898CE32664EFDD00C3AEFA /* UINavigationController+StatusBar.swift */; };
 		779A40CF266088AA00440C2E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A40CE266088AA00440C2E /* VisualEffectView.swift */; };
@@ -60,15 +79,34 @@
 		07016A6B480F07A48B0D57FF /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
 		1BEB8A59892DE86A71F05A17 /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
 		3849D3574B1AAD9301A5F07E /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7753738326672AEF00AF8C82 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		7753738426672AEF00AF8C82 /* WaitingForTap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingForTap.swift; sourceTree = "<group>"; };
+		7753738526672AEF00AF8C82 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		7753738726672AEF00AF8C82 /* BallTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BallTrail.sks; sourceTree = "<group>"; };
+		7753738826672AEF00AF8C82 /* BrokenPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BrokenPlatform.sks; sourceTree = "<group>"; };
+		7753738926672AEF00AF8C82 /* Playing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playing.swift; sourceTree = "<group>"; };
+		7753738A26672AEF00AF8C82 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		7753738B26672AEF00AF8C82 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		7753738D26672AEF00AF8C82 /* StatefulPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefulPlaceholderView.swift; sourceTree = "<group>"; };
+		7753738E26672AEF00AF8C82 /* StatefulViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefulViewController.swift; sourceTree = "<group>"; };
+		7753738F26672AEF00AF8C82 /* ViewStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewStateMachine.swift; sourceTree = "<group>"; };
+		7753739026672AEF00AF8C82 /* StatefulViewControllerImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefulViewControllerImplementation.swift; sourceTree = "<group>"; };
+		775373A326672BD800AF8C82 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		775373A426672BD800AF8C82 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		775373A726672BEC00AF8C82 /* Animation */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Animation; sourceTree = "<group>"; };
+		775373A926674FA600AF8C82 /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
+		775373AC2667578700AF8C82 /* UIControl+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Combine.swift"; sourceTree = "<group>"; };
 		7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Common.swift"; sourceTree = "<group>"; };
 		7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailHeaderView.swift; sourceTree = "<group>"; };
 		7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailContentViewController.swift; sourceTree = "<group>"; };
 		7769F2022665FD6800806BEA /* PodcastDetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailListViewController.swift; sourceTree = "<group>"; };
-		77898CD52664E43800C3AEFA /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		7769F2042666323800806BEA /* UIView+Positioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Positioning.swift"; sourceTree = "<group>"; };
+		7769F2062666355800806BEA /* EpisodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewCell.swift; sourceTree = "<group>"; };
+		7769F20826663A6100806BEA /* CancelableTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelableTask.swift; sourceTree = "<group>"; };
+		7769F20926663A6100806BEA /* RealtimeAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeAnalyzer.swift; sourceTree = "<group>"; };
 		77898CD82664E7AD00C3AEFA /* PlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextField.swift; sourceTree = "<group>"; };
 		77898CDA2664EE2900C3AEFA /* PodcastDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewController.swift; sourceTree = "<group>"; };
 		77898CDD2664EE6A00C3AEFA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		77898CDF2664EF5D00C3AEFA /* GradientLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLineView.swift; sourceTree = "<group>"; };
 		77898CE22664EFDD00C3AEFA /* UIColor+Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Gradient.swift"; sourceTree = "<group>"; };
 		77898CE32664EFDD00C3AEFA /* UINavigationController+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+StatusBar.swift"; sourceTree = "<group>"; };
 		779A40CE266088AA00440C2E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
@@ -130,6 +168,73 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7753738226672AEF00AF8C82 /* BreakOut */ = {
+			isa = PBXGroup;
+			children = (
+				7753738626672AEF00AF8C82 /* Particles */,
+				7753738326672AEF00AF8C82 /* GameViewController.swift */,
+				7753738A26672AEF00AF8C82 /* GameScene.sks */,
+				7753738B26672AEF00AF8C82 /* GameScene.swift */,
+				7753738926672AEF00AF8C82 /* Playing.swift */,
+				7753738526672AEF00AF8C82 /* GameOver.swift */,
+				7753738426672AEF00AF8C82 /* WaitingForTap.swift */,
+			);
+			path = BreakOut;
+			sourceTree = "<group>";
+		};
+		7753738626672AEF00AF8C82 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				7753738726672AEF00AF8C82 /* BallTrail.sks */,
+				7753738826672AEF00AF8C82 /* BrokenPlatform.sks */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		7753738C26672AEF00AF8C82 /* StatefulViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7753738D26672AEF00AF8C82 /* StatefulPlaceholderView.swift */,
+				7753738E26672AEF00AF8C82 /* StatefulViewController.swift */,
+				7753739026672AEF00AF8C82 /* StatefulViewControllerImplementation.swift */,
+				7753738F26672AEF00AF8C82 /* ViewStateMachine.swift */,
+			);
+			path = StatefulViewController;
+			sourceTree = "<group>";
+		};
+		7753739D26672B8E00AF8C82 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				775373A726672BEC00AF8C82 /* Animation */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		775373A126672BC800AF8C82 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				775373A226672BD800AF8C82 /* PlaceHolderView */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		775373A226672BD800AF8C82 /* PlaceHolderView */ = {
+			isa = PBXGroup;
+			children = (
+				775373A326672BD800AF8C82 /* EmptyView.swift */,
+				775373A426672BD800AF8C82 /* LoadingView.swift */,
+			);
+			path = PlaceHolderView;
+			sourceTree = "<group>";
+		};
+		775373AB2667577100AF8C82 /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				775373AC2667578700AF8C82 /* UIControl+Combine.swift */,
+			);
+			path = Combine;
+			sourceTree = "<group>";
+		};
 		77898CD32664E41400C3AEFA /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,12 +247,11 @@
 		77898CD42664E42A00C3AEFA /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				77898CD52664E43800C3AEFA /* EpisodeCell.swift */,
-				77898CDF2664EF5D00C3AEFA /* GradientLineView.swift */,
-				7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */,
 				77898CDA2664EE2900C3AEFA /* PodcastDetailViewController.swift */,
-				7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */,
 				7769F2022665FD6800806BEA /* PodcastDetailListViewController.swift */,
+				7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */,
+				7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */,
+				7769F2062666355800806BEA /* EpisodeTableViewCell.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -165,6 +269,7 @@
 			children = (
 				77898CE22664EFDD00C3AEFA /* UIColor+Gradient.swift */,
 				77898CE32664EFDD00C3AEFA /* UINavigationController+StatusBar.swift */,
+				7769F2042666323800806BEA /* UIView+Positioning.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -181,8 +286,11 @@
 			isa = PBXGroup;
 			children = (
 				779A40D126608B8500440C2E /* Extension */,
+				7769F20826663A6100806BEA /* CancelableTask.swift */,
 				779A40D92660913600440C2E /* FilePath.swift */,
+				7769F20926663A6100806BEA /* RealtimeAnalyzer.swift */,
 				779A40EA2660CDCB00440C2E /* UIStyleExtension.swift */,
+				775373A926674FA600AF8C82 /* BindableType.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -192,6 +300,7 @@
 			children = (
 				77898CE12664EFB400C3AEFA /* UIKit */,
 				77AA48E12664BEFF009D77AE /* SwiftUI */,
+				775373AB2667577100AF8C82 /* Combine */,
 				779A40DB26609F6600440C2E /* NetError+map.swift */,
 				779A40E12660BB5000440C2E /* Combine+Common.swift */,
 				779A40EC2660DD9B00440C2E /* UIImage+Common.swift */,
@@ -292,6 +401,7 @@
 				77F4B921265F8E5E0050D829 /* Model */,
 				779A40D026608B7E00440C2E /* Util */,
 				77F4B8CB265F50740050D829 /* Vendor */,
+				7753739D26672B8E00AF8C82 /* Resource */,
 				77F4B89C265F48540050D829 /* PodcastApp.swift */,
 				77F4B89E265F48540050D829 /* ContentView.swift */,
 				77F4B91C265F73AA0050D829 /* R.generated.swift */,
@@ -313,6 +423,7 @@
 		77F4B8B5265F4ABE0050D829 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				775373A126672BC800AF8C82 /* Component */,
 				77F4B8B6265F4AC90050D829 /* Home */,
 				779A40E52660C5CA00440C2E /* Search */,
 				77AA48EA2664CB43009D77AE /* Podcast */,
@@ -336,6 +447,8 @@
 		77F4B8CB265F50740050D829 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				7753738226672AEF00AF8C82 /* BreakOut */,
+				7753738C26672AEF00AF8C82 /* StatefulViewController */,
 				779A40CD2660888F00440C2E /* VisualEffectView */,
 				77F4B92B265F9F600050D829 /* HasSubscriptions */,
 				77898CD82664E7AD00C3AEFA /* PlaceholderTextField.swift */,
@@ -455,8 +568,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7753739426672AEF00AF8C82 /* BallTrail.sks in Resources */,
+				7753739726672AEF00AF8C82 /* GameScene.sks in Resources */,
 				77F4B8A4265F48560050D829 /* Preview Assets.xcassets in Resources */,
+				775373A826672BEC00AF8C82 /* Animation in Resources */,
 				77F4B8A1265F48560050D829 /* Assets.xcassets in Resources */,
+				7753739526672AEF00AF8C82 /* BrokenPlatform.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,10 +668,15 @@
 				77898CD92664E7AD00C3AEFA /* PlaceholderTextField.swift in Sources */,
 				77F4B8B8265F4ADC0050D829 /* HomeView.swift in Sources */,
 				77898CE52664EFDD00C3AEFA /* UINavigationController+StatusBar.swift in Sources */,
+				7753739626672AEF00AF8C82 /* Playing.swift in Sources */,
 				77F4B927265F91160050D829 /* HomeViewModel.swift in Sources */,
+				7769F2072666355800806BEA /* EpisodeTableViewCell.swift in Sources */,
 				779A40F02660E26400440C2E /* LibraryView.swift in Sources */,
+				7753739326672AEF00AF8C82 /* GameOver.swift in Sources */,
+				775373AA26674FA600AF8C82 /* BindableType.swift in Sources */,
 				77AA48EC2664CB5C009D77AE /* PodcastView.swift in Sources */,
 				77F4B920265F8CAA0050D829 /* ITunesService.swift in Sources */,
+				7753739926672AEF00AF8C82 /* StatefulPlaceholderView.swift in Sources */,
 				7769F1FD2665C6B000806BEA /* PodcastDetailHeaderView.swift in Sources */,
 				77898CDE2664EE6A00C3AEFA /* BaseViewController.swift in Sources */,
 				779A40E22660BB5000440C2E /* Combine+Common.swift in Sources */,
@@ -562,31 +684,41 @@
 				77F4B89F265F48540050D829 /* ContentView.swift in Sources */,
 				779A40ED2660DD9B00440C2E /* UIImage+Common.swift in Sources */,
 				7769F2012665FD2B00806BEA /* PodcastDetailContentViewController.swift in Sources */,
+				7753739826672AEF00AF8C82 /* GameScene.swift in Sources */,
 				77AA48F42664CF2C009D77AE /* SearchView.swift in Sources */,
 				779A40E02660B76500440C2E /* Episode.swift in Sources */,
 				7769F2032665FD6800806BEA /* PodcastDetailListViewController.swift in Sources */,
 				77AA48EE2664CB66009D77AE /* PodcastViewModel.swift in Sources */,
+				775373AD2667578700AF8C82 /* UIControl+Combine.swift in Sources */,
+				7753739126672AEF00AF8C82 /* GameViewController.swift in Sources */,
 				77AA48D226647CD9009D77AE /* SearchHistoryViewModel.swift in Sources */,
 				77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */,
 				779A40DC26609F6600440C2E /* NetError+map.swift in Sources */,
 				779A40F22660E27200440C2E /* SetView.swift in Sources */,
 				77898CE42664EFDD00C3AEFA /* UIColor+Gradient.swift in Sources */,
-				77898CD62664E43800C3AEFA /* EpisodeCell.swift in Sources */,
 				779A40D6266090A900440C2E /* Config.swift in Sources */,
+				7769F2052666323800806BEA /* UIView+Positioning.swift in Sources */,
 				779A40CF266088AA00440C2E /* VisualEffectView.swift in Sources */,
+				775373A526672BD800AF8C82 /* EmptyView.swift in Sources */,
 				77AA48D026647CCB009D77AE /* SearchHistory.swift in Sources */,
+				775373A626672BD800AF8C82 /* LoadingView.swift in Sources */,
 				77AA48F02664CCDB009D77AE /* SearchHeader.swift in Sources */,
-				77898CE02664EF5D00C3AEFA /* GradientLineView.swift in Sources */,
 				77F4B91D265F73AA0050D829 /* R.generated.swift in Sources */,
 				77F4B925265F8E7D0050D829 /* Podcast.swift in Sources */,
 				779A40EB2660CDCB00440C2E /* UIStyleExtension.swift in Sources */,
 				779A40E92660C5F700440C2E /* SearchViewModel.swift in Sources */,
+				7769F20B26663A6200806BEA /* CancelableTask.swift in Sources */,
 				779A40DA2660913600440C2E /* FilePath.swift in Sources */,
 				77F4B89D265F48540050D829 /* PodcastApp.swift in Sources */,
+				7753739A26672AEF00AF8C82 /* StatefulViewController.swift in Sources */,
+				7753739B26672AEF00AF8C82 /* ViewStateMachine.swift in Sources */,
 				779A40D326608B9C00440C2E /* SwiftUI+Common.swift in Sources */,
 				77BD0AA626612404002A0A73 /* PodcastCell.swift in Sources */,
+				7753739226672AEF00AF8C82 /* WaitingForTap.swift in Sources */,
 				77898CDB2664EE2900C3AEFA /* PodcastDetailViewController.swift in Sources */,
 				7769F1FB2665C5F200806BEA /* Kingfisher+Common.swift in Sources */,
+				7769F20C26663A6200806BEA /* RealtimeAnalyzer.swift in Sources */,
+				7753739C26672AEF00AF8C82 /* StatefulViewControllerImplementation.swift in Sources */,
 				77F4B92D265F9F730050D829 /* HasSubscriptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
