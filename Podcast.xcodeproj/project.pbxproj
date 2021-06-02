@@ -84,7 +84,6 @@
 		77AA48D026647CCB009D77AE /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48CF26647CCB009D77AE /* SearchHistory.swift */; };
 		77AA48D226647CD9009D77AE /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48D126647CD9009D77AE /* SearchHistoryViewModel.swift */; };
 		77AA48DB2664A357009D77AE /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA48DA2664A357009D77AE /* WrappingHStack */; };
-		77AA48DE2664BE0F009D77AE /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA48DD2664BE0F009D77AE /* Refresh */; };
 		77AA48EC2664CB5C009D77AE /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48EB2664CB5C009D77AE /* PodcastView.swift */; };
 		77AA48EE2664CB66009D77AE /* PodcastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48ED2664CB66009D77AE /* PodcastViewModel.swift */; };
 		77AA48F02664CCDB009D77AE /* SearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48EF2664CCDB009D77AE /* SearchHeader.swift */; };
@@ -96,7 +95,6 @@
 		77F4B8A1265F48560050D829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77F4B8A0265F48560050D829 /* Assets.xcassets */; };
 		77F4B8A4265F48560050D829 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77F4B8A3265F48560050D829 /* Preview Assets.xcassets */; };
 		77F4B8B8265F4ADC0050D829 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B8B7265F4ADC0050D829 /* HomeView.swift */; };
-		77F4B917265F67890050D829 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 77F4B916265F67890050D829 /* Introspect */; };
 		77F4B91A265F6A650050D829 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B919265F6A650050D829 /* MiniPlayerView.swift */; };
 		77F4B91D265F73AA0050D829 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B91C265F73AA0050D829 /* R.generated.swift */; };
 		77F4B920265F8CAA0050D829 /* ITunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B91F265F8CAA0050D829 /* ITunesService.swift */; };
@@ -214,8 +212,6 @@
 			files = (
 				B1EE611E2D6EC568A4E4BE90 /* Pods_Podcast.framework in Frameworks */,
 				77AA48DB2664A357009D77AE /* WrappingHStack in Frameworks */,
-				77AA48DE2664BE0F009D77AE /* Refresh in Frameworks */,
-				77F4B917265F67890050D829 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,9 +663,7 @@
 			);
 			name = Podcast;
 			packageProductDependencies = (
-				77F4B916265F67890050D829 /* Introspect */,
 				77AA48DA2664A357009D77AE /* WrappingHStack */,
-				77AA48DD2664BE0F009D77AE /* Refresh */,
 			);
 			productName = Podcast;
 			productReference = 77F4B899265F48540050D829 /* Podcast.app */;
@@ -699,9 +693,7 @@
 			);
 			mainGroup = 77F4B890265F48540050D829;
 			packageReferences = (
-				77F4B915265F67890050D829 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				77AA48D92664A357009D77AE /* XCRemoteSwiftPackageReference "WrappingHStack" */,
-				77AA48DC2664BE0F009D77AE /* XCRemoteSwiftPackageReference "Refresh" */,
 			);
 			productRefGroup = 77F4B89A265F48540050D829 /* Products */;
 			projectDirPath = "";
@@ -1100,22 +1092,6 @@
 				minimumVersion = 2.1.1;
 			};
 		};
-		77AA48DC2664BE0F009D77AE /* XCRemoteSwiftPackageReference "Refresh" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com.cnpmjs.org/wxxsw/Refresh.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		77F4B915265F67890050D829 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com.cnpmjs.org/siteline/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1123,16 +1099,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 77AA48D92664A357009D77AE /* XCRemoteSwiftPackageReference "WrappingHStack" */;
 			productName = WrappingHStack;
-		};
-		77AA48DD2664BE0F009D77AE /* Refresh */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 77AA48DC2664BE0F009D77AE /* XCRemoteSwiftPackageReference "Refresh" */;
-			productName = Refresh;
-		};
-		77F4B916265F67890050D829 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 77F4B915265F67890050D829 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

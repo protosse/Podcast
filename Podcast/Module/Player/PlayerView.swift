@@ -7,10 +7,14 @@
 
 import Kingfisher
 import SwiftUI
+import UIKit
+import WebKit
 
 struct PlayerView: View {
     @ObservedObject var viewModel: PlayerViewModel
     @ObservedObject var audioPlayerManager = AudioPlayerManager.share
+
+    @State var htmlHeight: CGFloat = 0
 
     init(episode: Episode) {
         viewModel = PlayerViewModel(episode: episode)
@@ -18,46 +22,99 @@ struct PlayerView: View {
 
     var body: some View {
         let url = URL(string: viewModel.episode.imageUrl?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
-        return ZStack {
-            Color(R.color.defaultBackground.name).ignoresSafeArea()
-            VStack {
-                SpectrumView(spectra: $audioPlayerManager.spectra)
-                    .frame(height: 50)
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 10) {
-                        KFImage(url)
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .cornerRadius(10)
-                        HStack {
-                            Text(viewModel.episode.title ?? "")
-                                .foregroundColor(.white)
-                                .font(.system(size: 16))
-                            Spacer(minLength: 10)
-                            Button(action: {}) {
-                                Image(systemName: "play.fill")
-                            }
-                            .frame(width: 35, height: 35)
-                            .background(Color.white)
-                            .clipShape(Circle())
+        return VStack {
+            SpectrumView(spectra: $audioPlayerManager.spectra)
+                .frame(height: 50)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    KFImage(url)
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .cornerRadius(10)
+                    HStack {
+                        Text(viewModel.episode.title ?? "")
+                            .font(.system(size: 16))
+                        Spacer(minLength: 10)
+                        Button(action: {}) {
+                            Image(systemName: "play.fill")
                         }
-                        Text(viewModel.episode.author ?? "")
-                            .foregroundColor(.white)
-                            .font(.system(size: 12))
-                        Text(viewModel.episode.desc ?? "")
-                            .foregroundColor(.white)
-                            .font(.system(size: 14))
-                            .fixedSize(horizontal: false, vertical: true)
+                        .frame(width: 35, height: 35)
+                        .background(Color.black.opacity(0.5))
+                        .clipShape(Circle())
                     }
-                    .padding(.all, 10)
+                    Text(viewModel.episode.author ?? "")
+                        .font(.system(size: 12))
+                    WebView(htmlString: viewModel.episode.desc ?? "", dynamicHeight: $htmlHeight)
+                        .frame(height: htmlHeight)
                 }
+                .padding(.all, 10)
             }
         }
         .onLoad(perform: load)
     }
 
     func load() {
-        audioPlayerManager.play(episode: viewModel.episode)
+//        audioPlayerManager.play(episode: viewModel.episode)
+    }
+}
+
+struct WebView: UIViewRepresentable {
+    var htmlString: String
+    @Binding var dynamicHeight: CGFloat
+    var webView: WKWebView = WKWebView()
+
+    func makeUIView(context: Context) -> WKWebView {
+        webView.navigationDelegate = context.coordinator
+        webView.isOpaque = false
+        webView.scrollView.isScrollEnabled = false
+        webView.backgroundColor = .clear
+        if htmlString != context.coordinator.content {
+            context.coordinator.content = htmlString
+            let html =
+                """
+                <html>
+                <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+                <style type="text/css">
+                img {margin-left:3px;width:100%;height:auto;}
+                video {margin-left:3px;width:100%;height:auto;}
+                body {margin-left:10px;margin-top:10px;margin-right:10px;}
+                </style>
+                </head>
+                <body>\(htmlString)</body>
+                </html>
+                """
+            webView.loadHTMLString(html, baseURL: Bundle.main.bundleURL)
+        }
+        return webView
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, WKNavigationDelegate {
+        var parent: WebView
+        var content = ""
+
+        init(_ parent: WebView) {
+            self.parent = parent
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            webView.evaluateJavaScript("document.readyState", completionHandler: { complete, _ in
+                if complete != nil {
+                    webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { height, _ in
+                        DispatchQueue.main.async {
+                            self.parent.dynamicHeight = height as? CGFloat ?? 0
+                        }
+                    })
+                }
+            })
+        }
     }
 }
 
