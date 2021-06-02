@@ -31,7 +31,6 @@ target 'Podcast' do
     pod 'AcknowList'
     pod 'SwiftyUserDefaults'
     pod 'ACBAVPlayer'
-    pod 'FRadioPlayer'
     pod 'ReachabilitySwift'
     pod 'R.swift'
     

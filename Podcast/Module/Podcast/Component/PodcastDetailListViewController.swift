@@ -8,6 +8,7 @@
 import JXPagingView
 import MGSwipeTableCell
 import UIKit
+import SwiftUI
 
 class PodcastDetailListViewController: BaseViewController, BindableType, HasSubscriptions {
     var listViewDidScrollCallback: ((UIScrollView) -> Void)?
@@ -108,6 +109,11 @@ extension PodcastDetailListViewController: UITableViewDelegate, UITableViewDataS
 //        cell.rightButtons = buttons
 //        cell.swipeBackgroundColor = .clear
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = dataSource[indexPath.row]
+        self.present(UIHostingController(rootView: PlayerView(episode: model)), animated: true)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

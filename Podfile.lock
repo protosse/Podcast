@@ -5,7 +5,6 @@ PODS:
   - Alamofire (5.4.3)
   - FeedKit (9.1.2)
   - FileKit (5.2.0)
-  - FRadioPlayer (0.1.22)
   - HandyJSON (5.0.2)
   - JXPagingView/Paging (2.1.0)
   - JXSegmentedView (1.2.7)
@@ -61,7 +60,6 @@ DEPENDENCIES:
   - ActiveLabel
   - FeedKit
   - FileKit
-  - FRadioPlayer
   - HandyJSON
   - JXPagingView/Paging
   - JXSegmentedView
@@ -88,7 +86,6 @@ SPEC REPOS:
     - Alamofire
     - FeedKit
     - FileKit
-    - FRadioPlayer
     - HandyJSON
     - JXPagingView
     - JXSegmentedView
@@ -115,7 +112,6 @@ SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
   FileKit: 10bfd8a3023a0b09f24c9f49546cbbddf43fd464
-  FRadioPlayer: 7c6173cc44a3be39a9419abd3a931d9223e175e4
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   JXPagingView: ef48a5a2392252c68db7999de38f4761a2707e2a
   JXSegmentedView: eb1cad21f57c2543c00c3e08b8fd3c7ca54f5acd
@@ -135,6 +131,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   Tiercel: 94b817f76bcdb7c86290b3dbd945048e94c6c153
 
-PODFILE CHECKSUM: 046037f7d6631eec3ab91b272094a70b88620d6d
+PODFILE CHECKSUM: af016bee1039329201bbc997c461b544c90d1699
 
 COCOAPODS: 1.10.1

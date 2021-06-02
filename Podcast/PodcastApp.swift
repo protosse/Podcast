@@ -8,10 +8,22 @@
 import SwiftMessages
 import SwiftUI
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         application.beginReceivingRemoteControlEvents()
         return true
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        application.endReceivingRemoteControlEvents()
+    }
+
+    // MARK: - Remote Controls
+
+    override func remoteControlReceived(with event: UIEvent?) {
+        super.remoteControlReceived(with: event)
+        guard let event = event, event.type == .remoteControl else { return }
+        AudioPlayerManager.share.remoteControlReceived(with: event)
     }
 }
 

@@ -28,7 +28,7 @@ class Episode: Identifiable {
     func update(feedItem: RSSFeedItem) {
         title = feedItem.title
         pubDate = feedItem.pubDate ?? Date()
-        desc = feedItem.iTunes?.iTunesSubtitle ?? feedItem.description
+        desc = feedItem.content?.contentEncoded
         author = feedItem.iTunes?.iTunesAuthor
         imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
         link = feedItem.link
