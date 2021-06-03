@@ -21,7 +21,7 @@ class PodcastViewModel: ObservableObject, HasSubscriptions {
     }
 
     func fetchEpisode() {
-        guard let id = podcast.id else {
+        guard let id = podcast.trackId else {
             refreshState = .content
             return
         }

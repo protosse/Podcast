@@ -38,7 +38,7 @@ struct PodcastView: View {
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
         let model = Podcast()
-        model.id = "1256399960"
+        model.trackId = "1256399960"
         model.trackName = "直到地狱尽头"
         model.artistName = "doom"
         model.artworkUrl100 = "https://static.gcores.com/assets/52fcb59ad1e09abecec58d39da6731cb.jpg"

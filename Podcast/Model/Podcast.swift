@@ -8,7 +8,7 @@
 import HandyJSON
 
 class Podcast: HandyJSON, Identifiable {
-    var id: String?
+    var trackId: String?
     var artistName: String?
     var trackName: String?
     var feedUrl: String?
@@ -23,7 +23,7 @@ class Podcast: HandyJSON, Identifiable {
     var summary: String?
 
     func mapping(mapper: HelpingMapper) {
-        mapper <<< id <-- ["id", "trackId"]
+        mapper <<< trackId <-- ["id", "trackId"]
         mapper <<< trackName <-- ["trackName", "name"]
     }
     

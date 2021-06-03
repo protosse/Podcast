@@ -9,7 +9,6 @@ target 'Podcast' do
     pod 'SwiftMessages'
     pod 'JXPagingView/Paging'
     pod 'JXSegmentedView'
-    pod 'ActiveLabel'
     pod 'PinLayout'
     pod 'MGSwipeTableCell'
     pod 'MJRefresh'
@@ -27,11 +26,11 @@ target 'Podcast' do
     pod 'SwifterSwift'
     pod 'HandyJSON'
     pod 'FeedKit'
-    pod 'FileKit'
     pod 'AcknowList'
     pod 'SwiftyUserDefaults'
     pod 'ACBAVPlayer'
     pod 'ReachabilitySwift'
     pod 'R.swift'
+    pod 'GRDB.swift'
     
 end

@@ -1,10 +1,11 @@
 PODS:
   - ACBAVPlayer (2.1)
   - AcknowList (2.0.1)
-  - ActiveLabel (1.1.0)
   - Alamofire (5.4.3)
   - FeedKit (9.1.2)
-  - FileKit (5.2.0)
+  - GRDB.swift (5.8.0):
+    - GRDB.swift/standard (= 5.8.0)
+  - GRDB.swift/standard (5.8.0)
   - HandyJSON (5.0.2)
   - JXPagingView/Paging (2.1.0)
   - JXSegmentedView (1.2.7)
@@ -57,9 +58,8 @@ PODS:
 DEPENDENCIES:
   - ACBAVPlayer
   - AcknowList
-  - ActiveLabel
   - FeedKit
-  - FileKit
+  - GRDB.swift
   - HandyJSON
   - JXPagingView/Paging
   - JXSegmentedView
@@ -82,10 +82,9 @@ SPEC REPOS:
   trunk:
     - ACBAVPlayer
     - AcknowList
-    - ActiveLabel
     - Alamofire
     - FeedKit
-    - FileKit
+    - GRDB.swift
     - HandyJSON
     - JXPagingView
     - JXSegmentedView
@@ -108,10 +107,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   ACBAVPlayer: 7ef1a2a6045552dc35d1b8b303908d90a3d7845e
   AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
-  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
-  FileKit: 10bfd8a3023a0b09f24c9f49546cbbddf43fd464
+  GRDB.swift: 9b9beec114435e1d852ad68c136cff4c71134627
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   JXPagingView: ef48a5a2392252c68db7999de38f4761a2707e2a
   JXSegmentedView: eb1cad21f57c2543c00c3e08b8fd3c7ca54f5acd
@@ -131,6 +129,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   Tiercel: 94b817f76bcdb7c86290b3dbd945048e94c6c153
 
-PODFILE CHECKSUM: af016bee1039329201bbc997c461b544c90d1699
+PODFILE CHECKSUM: 9183d5b06027a1c06adaf62753dbdd7f2f8700d1
 
 COCOAPODS: 1.10.1

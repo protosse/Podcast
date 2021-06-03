@@ -7,14 +7,12 @@
 
 import Combine
 import FeedKit
-import FileKit
 import Moya
 
 enum ITunes {
     case search(term: String, page: Int)
     case lookUp(podcastID: String)
     case top(limit: Int, country: ITunesCountry)
-    case downloadEpisode(url: String)
     case episode(url: String)
 }
 
@@ -33,8 +31,6 @@ extension ITunes: TargetType {
             limit = max(1, limit)
             let string = "https://rss.itunes.apple.com/api/v1/\(country)/podcasts/top-podcasts/all/\(limit)/explicit.json"
             return URL(string: string)!
-        case let .downloadEpisode(url):
-            return URL(string: url)!
         case let .episode(url):
             return URL(string: url)!
         }
@@ -70,17 +66,6 @@ extension ITunes: TargetType {
 
     var task: Moya.Task {
         switch self {
-        case .downloadEpisode:
-            let defaultDownloadDestination: DownloadDestination = { _, response in
-                var path = FilePath.Directory.podcast.path
-                if let name = response.suggestedFilename {
-                    path += name
-                } else {
-                    path += UUID().uuidString
-                }
-                return (path.url, .removePreviousFile)
-            }
-            return .downloadDestination(defaultDownloadDestination)
         default:
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }

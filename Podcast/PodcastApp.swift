@@ -39,6 +39,7 @@ struct PodcastApp: App {
     }
 
     func load() {
+        _ = DB.share
         customUI()
     }
 

@@ -10,8 +10,8 @@ import SwiftUI
 struct HomeView: View {
     var homeViewModel = HomeViewModel()
 
-    @State var isPresentSearch = false
-    @State var isPresentSet = false
+    @State private var isPresentSearch = false
+    @State private var isPresentSet = false
 
     var body: some View {
         VStack {

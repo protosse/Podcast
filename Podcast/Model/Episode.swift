@@ -35,6 +35,17 @@ class Episode: Identifiable {
         streamUrl = feedItem.enclosure?.attributes?.url
         duration = feedItem.iTunes?.iTunesDuration ?? 0
     }
+    
+    var playUrl: URL? {
+        var url: URL?
+        if let fileUrl = fileUrl {
+            let link = URL(fileURLWithPath: fileUrl)
+            url = link
+        } else if let streamUrl = streamUrl, let link = URL(string: streamUrl) {
+            url = link
+        }
+        return url
+    }
 }
 
 extension RSSFeed {

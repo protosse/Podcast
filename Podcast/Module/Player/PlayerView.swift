@@ -14,7 +14,10 @@ struct PlayerView: View {
     @ObservedObject var viewModel: PlayerViewModel
     @ObservedObject var audioPlayerManager = AudioPlayerManager.share
 
-    @State var htmlHeight: CGFloat = 0
+    @State private var htmlHeight: CGFloat = 0
+
+    @State private var isShowSet = false
+    @State private var isShowPlayList = false
 
     init(episode: Episode) {
         viewModel = PlayerViewModel(episode: episode)
@@ -35,7 +38,9 @@ struct PlayerView: View {
                         Text(viewModel.episode.title ?? "")
                             .font(.system(size: 16))
                         Spacer(minLength: 10)
-                        Button(action: {}) {
+                        Button(action: {
+                            audioPlayerManager.play(episode: viewModel.episode)
+                        }) {
                             Image(systemName: "play.fill")
                         }
                         .frame(width: 35, height: 35)
@@ -50,12 +55,19 @@ struct PlayerView: View {
                 }
                 .padding(.all, 10)
             }
-        }
-        .onLoad(perform: load)
-    }
 
-    func load() {
-//        audioPlayerManager.play(episode: viewModel.episode)
+            PlayControlView {
+                isShowSet.toggle()
+            } onPlayListTap: {
+                isShowPlayList.toggle()
+            }
+        }
+        .bottomSheet(isPresented: $isShowSet, height: 500) {
+            PlaySetView()
+        }
+        .bottomSheet(isPresented: $isShowPlayList, height: 500) {
+            PlayListView()
+        }
     }
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MiniPlayerView: View {
     private let buttonWidth: CGFloat = 54
-    @State var progress: CGFloat = 0
+    @State private var progress: CGFloat = 0
 
     var body: some View {
         VStack {
