@@ -122,7 +122,7 @@ class ITunesService {
         return request
     }
 
-    func fetchEpisodes(feedUrl: String, forceUpdate: Bool = false) -> (AnyPublisher<([Episode], String?), NetError>, AnyPublisher<Double, NetError>) {
+    func fetchEpisodes(feedUrl: String) -> (AnyPublisher<([Episode], String?), NetError>, AnyPublisher<Double, NetError>) {
         let request = itunes.requestWithProgressPublisher(.episode(url: feedUrl))
         let progress = request.filterProgress().removeDuplicates().mapNetError()
         let data = request

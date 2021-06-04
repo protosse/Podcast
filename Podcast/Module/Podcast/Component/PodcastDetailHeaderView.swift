@@ -43,28 +43,26 @@ class PodcastDetailHeaderView: UIView {
     }
     
     func configure(with model: Podcast) {
-        contentImageView.kf.setImage(model.artworkUrl100)
+        contentImageView.kf.setImage(model.artworkUrl(.Large))
         titleLabel.text = model.trackName
         authLabel.text = model.artistName
-
-        collectButton.isSelected = model.isCollected
         layout()
     }
 
     func layout() {
         contentImageView.pin.top().width(self.width * 0.3).height(self.width * 0.3).left(20)
-
-        titleLabel.pin
-            .after(of: contentImageView, aligned: .center)
+        
+        authLabel.pin
+            .after(of: contentImageView, aligned: .top)
             .marginLeft(16).right(10).sizeToFit()
 
-        authLabel.pin
-            .above(of: titleLabel, aligned: .left)
-            .marginBottom(10).right(10).sizeToFit()
+        titleLabel.pin
+            .below(of: authLabel, aligned: .left)
+            .marginTop(10).right(10).sizeToFit()
 
         collectButton.pin
-            .below(of: titleLabel, aligned: .left)
-            .marginTop(10).width(self.width * 0.3).height(30)
+            .after(of: contentImageView, aligned: .bottom)
+            .marginLeft(16).width(self.width * 0.3).height(30)
         collectButton.cornerRadius = 15
 
         self.pin.wrapContent(.vertically, padding: PEdgeInsets(top: 20, left: 0, bottom: 20, right: 0))

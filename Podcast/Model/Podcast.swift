@@ -8,6 +8,17 @@
 import GRDB
 import HandyJSON
 
+enum ArtworkQuality: Int, CaseIterable {
+    case Large
+    case High
+    case Medium
+    case Low
+
+    func next() -> ArtworkQuality {
+        return self == .Low ? .Large : ArtworkQuality(rawValue: rawValue + 1)!
+    }
+}
+
 struct Podcast: HandyJSON, Identifiable {
     var id: Int64 = 0
 
@@ -29,14 +40,27 @@ struct Podcast: HandyJSON, Identifiable {
         mapper <<< trackId <-- ["id", "trackId"]
         mapper <<< trackName <-- ["trackName", "name"]
     }
+
+    func artworkUrl(_ artworkQuality: ArtworkQuality = .High) -> String {
+        let artworkUrls: [ArtworkQuality: String?] = [.High: artworkUrl100, .Medium: artworkUrl60, .Low: artworkUrl30, .Large: artworkUrl600]
+        var url = artworkUrls[artworkQuality] ?? nil
+        if url.isNilOrEmpty {
+            var quality = artworkQuality.next()
+            while quality != artworkQuality && url.isNilOrEmpty {
+                url = artworkUrls[quality] ?? nil
+                quality = quality.next()
+            }
+        }
+        return url ?? ""
+    }
 }
 
 extension Podcast: FetchableRecord, PersistableRecord {
     static var databaseTableName = "podcast"
-    static let persistenceConflictPolicy = PersistenceConflictPolicy(insert: .ignore)
+    static let persistenceConflictPolicy = PersistenceConflictPolicy(insert: .replace)
 
     enum Columns: String, ColumnExpression {
-        case id, artistName, trackName, feedUrl, artworkUrl100, releaseDate, isCollected, summary
+        case id, artistName, trackName, feedUrl, artworkUrl30, artworkUrl60, artworkUrl100, artworkUrl600, releaseDate, isCollected, summary
     }
 
     init(row: Row) {
@@ -44,7 +68,10 @@ extension Podcast: FetchableRecord, PersistableRecord {
         artistName = row[Columns.artistName]
         trackName = row[Columns.trackName]
         feedUrl = row[Columns.feedUrl]
+        artworkUrl30 = row[Columns.artworkUrl30]
+        artworkUrl60 = row[Columns.artworkUrl60]
         artworkUrl100 = row[Columns.artworkUrl100]
+        artworkUrl600 = row[Columns.artworkUrl600]
         releaseDate = row[Columns.releaseDate]
         isCollected = row[Columns.isCollected]
         summary = row[Columns.summary]
@@ -55,7 +82,10 @@ extension Podcast: FetchableRecord, PersistableRecord {
         container[Columns.artistName] = artistName
         container[Columns.trackName] = trackName
         container[Columns.feedUrl] = feedUrl
+        container[Columns.artworkUrl30] = artworkUrl30
+        container[Columns.artworkUrl60] = artworkUrl60
         container[Columns.artworkUrl100] = artworkUrl100
+        container[Columns.artworkUrl600] = artworkUrl600
         container[Columns.releaseDate] = releaseDate
         container[Columns.isCollected] = isCollected
         container[Columns.summary] = summary
@@ -64,14 +94,35 @@ extension Podcast: FetchableRecord, PersistableRecord {
 
 extension Podcast {
     static let episodes = hasMany(Episode.self)
-    var episodes: QueryInterfaceRequest<Episode> {
-        request(for: Podcast.episodes)
+
+    var episodes: [Episode]? {
+        return try? DB.share.dbQueue?.read({ db in
+            let data = try self.request(for: Podcast.episodes).fetchAll(db)
+            return data
+        })
     }
 
-    func updateInDB(episodes: [Episode]) {
+    static func fetch(id: String) -> Podcast? {
+        return try? DB.share.dbQueue?.read({ db in
+            try Podcast.fetchOne(db, key: id)
+        })
+    }
+
+    func updateDB() {
+        do {
+            try DB.share.dbQueue?.write({ db in
+                try self.update(db)
+            })
+        } catch let e {
+            log.error(e.localizedDescription)
+        }
+    }
+
+    func updateDB(episodes: [Episode]) {
         DB.share.dbQueue?.asyncWrite({ db in
             try self.insert(db)
-            for i in 0 ..< episodes.count {
+            let count = episodes.count
+            for i in 0 ..< count {
                 var episode = episodes[i]
                 episode.podcastId = trackId
                 try episode.insert(db)

@@ -13,7 +13,7 @@ struct PodcastCell: View {
 
     var body: some View {
         HStack(alignment: .top) {
-            KFImage(URL(string: model.artworkUrl100 ?? ""))
+            KFImage(URL(string: model.artworkUrl()))
                 .resizable()
                 .frame(width: 80, height: 80)
             VStack(alignment: .leading, spacing: 15) {

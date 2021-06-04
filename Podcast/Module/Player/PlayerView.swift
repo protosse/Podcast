@@ -24,13 +24,12 @@ struct PlayerView: View {
     }
 
     var body: some View {
-        let url = URL(string: viewModel.episode.imageUrl?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
-        return VStack {
+        VStack {
             SpectrumView(spectra: $audioPlayerManager.spectra)
                 .frame(height: 50)
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    KFImage(url)
+                    KFImage(URL(string: viewModel.episode.imageUrl))
                         .resizable()
                         .frame(width: 50, height: 50)
                         .cornerRadius(10)

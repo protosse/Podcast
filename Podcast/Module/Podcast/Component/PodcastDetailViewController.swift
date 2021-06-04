@@ -80,6 +80,8 @@ class PodcastDetailViewController: BaseViewController, HasSubscriptions {
         pagingView.mainTableView.backgroundColor = R.color.defaultBackground()
         view.addSubview(pagingView)
         segmentedView.listContainer = pagingView.listContainerView
+
+        bindViewModel()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -100,6 +102,19 @@ class PodcastDetailViewController: BaseViewController, HasSubscriptions {
         super.viewDidLayoutSubviews()
 
         pagingView.pin.top().left().right().bottom(view.pin.safeArea)
+    }
+
+    func bindViewModel() {
+        viewModel.$isCollected
+            .assign(to: \.isSelected, on: headerView.collectButton)
+            .store(in: &subscriptions)
+
+        headerView.collectButton
+            .publisher(for: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.viewModel.collectToggle()
+            }
+            .store(in: &subscriptions)
     }
 }
 

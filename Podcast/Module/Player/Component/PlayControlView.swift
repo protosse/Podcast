@@ -12,7 +12,7 @@ struct PlayControlView: View {
     @ObservedObject var audioPlayerManager = AudioPlayerManager.share
 
     @State private var draggedOffset: CGFloat = 0
-    @State private var isShowFull = true
+    @State private var isShowFull = false
 
     @State private var labelWidth: CGFloat?
 

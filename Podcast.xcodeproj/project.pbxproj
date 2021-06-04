@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77534A572668DF4E008A1140 /* db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77534A562668DF4E008A1140 /* db.swift */; };
+		77534A572668DF4E008A1140 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77534A562668DF4E008A1140 /* DBManager.swift */; };
 		7753739126672AEF00AF8C82 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738326672AEF00AF8C82 /* GameViewController.swift */; };
 		7753739226672AEF00AF8C82 /* WaitingForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738426672AEF00AF8C82 /* WaitingForTap.swift */; };
 		7753739326672AEF00AF8C82 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738526672AEF00AF8C82 /* GameOver.swift */; };
@@ -99,6 +99,7 @@
 		77AA48F42664CF2C009D77AE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48F32664CF2C009D77AE /* SearchView.swift */; };
 		77BD0AA626612404002A0A73 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD0AA526612404002A0A73 /* PodcastCell.swift */; };
 		77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */; };
+		77C78F942669F3B400541E48 /* SwiftUI+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C78F932669F3B400541E48 /* SwiftUI+Device.swift */; };
 		77F4B89D265F48540050D829 /* PodcastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B89C265F48540050D829 /* PodcastApp.swift */; };
 		77F4B89F265F48540050D829 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B89E265F48540050D829 /* ContentView.swift */; };
 		77F4B8A1265F48560050D829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77F4B8A0265F48560050D829 /* Assets.xcassets */; };
@@ -117,7 +118,7 @@
 		07016A6B480F07A48B0D57FF /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
 		1BEB8A59892DE86A71F05A17 /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
 		3849D3574B1AAD9301A5F07E /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		77534A562668DF4E008A1140 /* db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = db.swift; sourceTree = "<group>"; };
+		77534A562668DF4E008A1140 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		7753738326672AEF00AF8C82 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7753738426672AEF00AF8C82 /* WaitingForTap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingForTap.swift; sourceTree = "<group>"; };
 		7753738526672AEF00AF8C82 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
@@ -207,6 +208,7 @@
 		77AA48F32664CF2C009D77AE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		77BD0AA526612404002A0A73 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+HandyJSON.swift"; sourceTree = "<group>"; };
+		77C78F932669F3B400541E48 /* SwiftUI+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Device.swift"; sourceTree = "<group>"; };
 		77F4B899265F48540050D829 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F4B89C265F48540050D829 /* PodcastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastApp.swift; sourceTree = "<group>"; };
 		77F4B89E265F48540050D829 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				779A40D226608B9C00440C2E /* SwiftUI+Common.swift */,
+				77C78F932669F3B400541E48 /* SwiftUI+Device.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -645,7 +648,7 @@
 			isa = PBXGroup;
 			children = (
 				77F4B91F265F8CAA0050D829 /* ITunesService.swift */,
-				77534A562668DF4E008A1140 /* db.swift */,
+				77534A562668DF4E008A1140 /* DBManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -894,11 +897,12 @@
 				77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */,
 				775373DE266773ED00AF8C82 /* AudioItemQueue.swift in Sources */,
 				775373E5266773ED00AF8C82 /* QualityAdjustmentEventProducer.swift in Sources */,
+				77C78F942669F3B400541E48 /* SwiftUI+Device.swift in Sources */,
 				775373F1266773ED00AF8C82 /* AudioPlayer+Queue.swift in Sources */,
 				778678D92668C39F006AA6CC /* PlayListView.swift in Sources */,
 				779A40DC26609F6600440C2E /* NetError+map.swift in Sources */,
 				779A40F22660E27200440C2E /* SetView.swift in Sources */,
-				77534A572668DF4E008A1140 /* db.swift in Sources */,
+				77534A572668DF4E008A1140 /* DBManager.swift in Sources */,
 				775373DC266773ED00AF8C82 /* MPNowPlayingInfoCenter+AudioItem.swift in Sources */,
 				77898CE42664EFDD00C3AEFA /* UIColor+Gradient.swift in Sources */,
 				779A40D6266090A900440C2E /* Config.swift in Sources */,

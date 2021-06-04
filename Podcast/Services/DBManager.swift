@@ -1,5 +1,5 @@
 //
-//  db.swift
+//  DBManager.swift
 //  Podcast
 //
 //  Created by liuliu on 2021/6/3.
@@ -38,29 +38,33 @@ class DB {
             var migrator = DatabaseMigrator()
             migrator.registerMigration("init") { db in
                 try db.create(table: "podcast") { t in
-                    t.column("id", .text).primaryKey()
+                    t.column("id", .text).unique().primaryKey()
                     t.column("artistName", .text)
                     t.column("trackName", .text)
                     t.column("feedUrl", .text)
+                    t.column("artworkUrl30", .text)
+                    t.column("artworkUrl60", .text)
                     t.column("artworkUrl100", .text)
+                    t.column("artworkUrl600", .text)
                     t.column("releaseDate", .text)
                     t.column("isCollected", .boolean)
                     t.column("summary", .text)
                 }
 
                 try db.create(table: "episode") { t in
+                    t.column("streamUrl", .text).unique().primaryKey()
+                    t.column("link", .text)
                     t.column("title", .text)
                     t.column("pubDate", .date)
                     t.column("desc", .text)
                     t.column("author", .text)
                     t.column("imageUrl", .text)
-                    t.column("link", .text)
-                    t.column("streamUrl", .text).primaryKey()
                     t.column("duration", .double)
                     t.column("playedTime", .double)
                     t.column("fileUrl", .text)
-                    t.column("podcastId", .text)
+                    t.column("podcastId", .integer)
                         .notNull()
+                        .indexed()
                         .references("podcast", onDelete: .cascade)
                 }
             }

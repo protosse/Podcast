@@ -16,6 +16,8 @@ class PodcastViewModel: ObservableObject, HasSubscriptions {
     @Published var dataSource: [Episode] = []
     @Published var progress: Double = 0
 
+    @Published var isCollected = false
+
     init(podcast: Podcast) {
         self.podcast = podcast
     }
@@ -26,9 +28,19 @@ class PodcastViewModel: ObservableObject, HasSubscriptions {
             return
         }
 
-        refreshState = .loading
-        let fetch = (podcast.feedUrl.isNilOrEmpty ? ITunesService.share.lookUp(id) : Just(podcast).mapNetError())
-            .handleEvents(receiveCompletion: { [weak self] completion in
+        if let podcastInDB = Podcast.fetch(id: id), let episodes = podcastInDB.episodes, !episodes.isEmpty {
+            isCollected = podcastInDB.isCollected
+            podcast = podcastInDB
+            dataSource = episodes
+        } else {
+            refreshState = .loading
+        }
+
+        var tempPodcast: Podcast!
+        let fetch = ITunesService.share.lookUp(id)
+            .handleEvents(receiveOutput: {
+                tempPodcast = $0
+            }, receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure:
                     self?.refreshState = .error
@@ -50,9 +62,10 @@ class PodcastViewModel: ObservableObject, HasSubscriptions {
                 }
             } receiveValue: { [weak self] data, summary in
                 guard let self = self else { return }
-                self.podcast.summary = summary
-                self.podcast = self.podcast
-                self.podcast.updateInDB(episodes: data)
+                tempPodcast.summary = summary
+                tempPodcast.isCollected = self.isCollected
+                self.podcast = tempPodcast
+                tempPodcast.updateDB(episodes: data)
                 self.refreshState = data.isEmpty ? .empty : .content
                 self.dataSource = data
             }
@@ -64,5 +77,11 @@ class PodcastViewModel: ObservableObject, HasSubscriptions {
                 self?.progress = progress
             }
             .store(in: &subscriptions)
+    }
+
+    func collectToggle() {
+        podcast.isCollected.toggle()
+        isCollected = podcast.isCollected
+        podcast.updateDB()
     }
 }

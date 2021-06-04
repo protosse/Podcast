@@ -5,8 +5,8 @@
 //  Created by liuliu on 2021/5/27.
 //
 
-import SwiftUI
 import SwifterSwift
+import SwiftUI
 
 struct ContentView: View {
     init() {
@@ -37,6 +37,7 @@ struct ContentView: View {
                 .navigationBarHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

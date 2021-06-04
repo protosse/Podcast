@@ -11,6 +11,7 @@ import GRDB
 struct Episode: Identifiable {
     var id: Int64 = 0
 
+    var uid: Int64 = 0
     var title: String?
     var pubDate: Date?
     var desc: String?
@@ -22,7 +23,7 @@ struct Episode: Identifiable {
 
     var playedTime: TimeInterval = 0
     var fileUrl: String?
-    
+
     var podcastId: String?
 
     init() {}
@@ -32,7 +33,7 @@ struct Episode: Identifiable {
         pubDate = feedItem.pubDate ?? Date()
         desc = feedItem.content?.contentEncoded ?? feedItem.iTunes?.iTunesSummary
         author = feedItem.iTunes?.iTunesAuthor
-        imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
+        imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         link = feedItem.link
         streamUrl = feedItem.enclosure?.attributes?.url
         duration = feedItem.iTunes?.iTunesDuration ?? 0
@@ -78,10 +79,11 @@ extension Episode: Codable, FetchableRecord, PersistableRecord {
     static let persistenceConflictPolicy = PersistenceConflictPolicy(insert: .ignore)
 
     enum Columns: String, ColumnExpression {
-        case title, pubDate, desc, author, imageUrl, link, streamUrl, duration, playedTime, fileUrl, podcastId
+        case id, title, pubDate, desc, author, imageUrl, link, streamUrl, duration, playedTime, fileUrl, podcastId
     }
 
     init(row: Row) {
+        uid = row[Columns.id]
         title = row[Columns.title]
         pubDate = row[Columns.pubDate]
         desc = row[Columns.desc]
@@ -96,6 +98,7 @@ extension Episode: Codable, FetchableRecord, PersistableRecord {
     }
 
     func encode(to container: inout PersistenceContainer) {
+        container[Columns.id] = uid
         container[Columns.title] = title
         container[Columns.pubDate] = pubDate
         container[Columns.desc] = desc
