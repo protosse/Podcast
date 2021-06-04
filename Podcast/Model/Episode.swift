@@ -6,9 +6,11 @@
 //
 
 import FeedKit
+import GRDB
 
 struct Episode: Identifiable {
     var id: Int64 = 0
+
     var title: String?
     var pubDate: Date?
     var desc: String?
@@ -20,6 +22,8 @@ struct Episode: Identifiable {
 
     var playedTime: TimeInterval = 0
     var fileUrl: String?
+    
+    var podcastId: String?
 
     init() {}
 
@@ -66,5 +70,49 @@ extension RSSFeed {
         } else {
             return episodes
         }
+    }
+}
+
+extension Episode: Codable, FetchableRecord, PersistableRecord {
+    static var databaseTableName = "episode"
+    static let persistenceConflictPolicy = PersistenceConflictPolicy(insert: .ignore)
+
+    enum Columns: String, ColumnExpression {
+        case title, pubDate, desc, author, imageUrl, link, streamUrl, duration, playedTime, fileUrl, podcastId
+    }
+
+    init(row: Row) {
+        title = row[Columns.title]
+        pubDate = row[Columns.pubDate]
+        desc = row[Columns.desc]
+        author = row[Columns.author]
+        imageUrl = row[Columns.imageUrl]
+        link = row[Columns.link]
+        streamUrl = row[Columns.streamUrl]
+        duration = row[Columns.duration]
+        playedTime = row[Columns.playedTime]
+        fileUrl = row[Columns.fileUrl]
+        podcastId = row[Columns.podcastId]
+    }
+
+    func encode(to container: inout PersistenceContainer) {
+        container[Columns.title] = title
+        container[Columns.pubDate] = pubDate
+        container[Columns.desc] = desc
+        container[Columns.author] = author
+        container[Columns.imageUrl] = imageUrl
+        container[Columns.link] = link
+        container[Columns.streamUrl] = streamUrl
+        container[Columns.duration] = duration
+        container[Columns.playedTime] = playedTime
+        container[Columns.fileUrl] = fileUrl
+        container[Columns.podcastId] = podcastId
+    }
+}
+
+extension Episode {
+    static let podcast = belongsTo(Podcast.self)
+    var podcast: QueryInterfaceRequest<Podcast> {
+        request(for: Episode.podcast)
     }
 }

@@ -10,7 +10,7 @@ import GRDB
 class DB {
     static let share = DB()
 
-    private var dbQueue: DatabaseQueue?
+    var dbQueue: DatabaseQueue?
 
     init() {
         guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
@@ -19,7 +19,12 @@ class DB {
         }
         let dbPath = documentPath.appendingPathComponent("database.sqlite")
         log.debug("dbPath: \(dbPath)")
-        dbQueue = try? DatabaseQueue(path: dbPath)
+        let config = Configuration()
+        dbQueue = try? DatabaseQueue(path: dbPath, configuration: config)
+
+        Database.logError = { resultCode, message in
+            log.debug("%@", "SQLite error \(resultCode): \(message)")
+        }
 
         migrate()
     }
@@ -33,14 +38,30 @@ class DB {
             var migrator = DatabaseMigrator()
             migrator.registerMigration("init") { db in
                 try db.create(table: "podcast") { t in
-                    t.autoIncrementedPrimaryKey("id")
-                    t.column("trackId", .text)
+                    t.column("id", .text).primaryKey()
                     t.column("artistName", .text)
                     t.column("trackName", .text)
                     t.column("feedUrl", .text)
                     t.column("artworkUrl100", .text)
                     t.column("releaseDate", .text)
+                    t.column("isCollected", .boolean)
                     t.column("summary", .text)
+                }
+
+                try db.create(table: "episode") { t in
+                    t.column("title", .text)
+                    t.column("pubDate", .date)
+                    t.column("desc", .text)
+                    t.column("author", .text)
+                    t.column("imageUrl", .text)
+                    t.column("link", .text)
+                    t.column("streamUrl", .text).primaryKey()
+                    t.column("duration", .double)
+                    t.column("playedTime", .double)
+                    t.column("fileUrl", .text)
+                    t.column("podcastId", .text)
+                        .notNull()
+                        .references("podcast", onDelete: .cascade)
                 }
             }
 

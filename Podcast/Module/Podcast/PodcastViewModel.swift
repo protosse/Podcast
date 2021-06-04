@@ -48,10 +48,11 @@ class PodcastViewModel: ObservableObject, HasSubscriptions {
                 case .finished:
                     break
                 }
-            } receiveValue: { [weak self] (data, summary) in
+            } receiveValue: { [weak self] data, summary in
                 guard let self = self else { return }
                 self.podcast.summary = summary
                 self.podcast = self.podcast
+                self.podcast.updateInDB(episodes: data)
                 self.refreshState = data.isEmpty ? .empty : .content
                 self.dataSource = data
             }

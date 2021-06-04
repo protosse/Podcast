@@ -47,7 +47,7 @@ class PodcastDetailHeaderView: UIView {
         titleLabel.text = model.trackName
         authLabel.text = model.artistName
 
-        collectButton.isSelected = model.isSaved
+        collectButton.isSelected = model.isCollected
         layout()
     }
 

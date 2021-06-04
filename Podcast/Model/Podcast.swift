@@ -22,7 +22,7 @@ struct Podcast: HandyJSON, Identifiable {
     var artworkUrl600: String?
     var releaseDate: String?
 
-    var isSaved = false
+    var isCollected = false
     var summary: String?
 
     mutating func mapping(mapper: HelpingMapper) {
@@ -31,32 +31,53 @@ struct Podcast: HandyJSON, Identifiable {
     }
 }
 
-extension Podcast: FetchableRecord, MutablePersistableRecord {
+extension Podcast: FetchableRecord, PersistableRecord {
+    static var databaseTableName = "podcast"
+    static let persistenceConflictPolicy = PersistenceConflictPolicy(insert: .ignore)
+
     enum Columns: String, ColumnExpression {
-        case id, trackId, artistName, trackName, feedUrl, artworkUrl100, releaseDate, summary
+        case id, artistName, trackName, feedUrl, artworkUrl100, releaseDate, isCollected, summary
     }
 
     init(row: Row) {
-        trackId = row[Columns.trackId]
+        trackId = row[Columns.id]
         artistName = row[Columns.artistName]
         trackName = row[Columns.trackName]
         feedUrl = row[Columns.feedUrl]
         artworkUrl100 = row[Columns.artworkUrl100]
         releaseDate = row[Columns.releaseDate]
+        isCollected = row[Columns.isCollected]
         summary = row[Columns.summary]
     }
 
     func encode(to container: inout PersistenceContainer) {
-        container[Columns.trackId] = trackId
+        container[Columns.id] = trackId
         container[Columns.artistName] = artistName
         container[Columns.trackName] = trackName
         container[Columns.feedUrl] = feedUrl
         container[Columns.artworkUrl100] = artworkUrl100
         container[Columns.releaseDate] = releaseDate
+        container[Columns.isCollected] = isCollected
         container[Columns.summary] = summary
     }
+}
 
-    mutating func didInsert(with rowID: Int64, for column: String?) {
-        id = rowID
+extension Podcast {
+    static let episodes = hasMany(Episode.self)
+    var episodes: QueryInterfaceRequest<Episode> {
+        request(for: Podcast.episodes)
+    }
+
+    func updateInDB(episodes: [Episode]) {
+        DB.share.dbQueue?.asyncWrite({ db in
+            try self.insert(db)
+            for i in 0 ..< episodes.count {
+                var episode = episodes[i]
+                episode.podcastId = trackId
+                try episode.insert(db)
+            }
+        }, completion: { _, _ in
+
+        })
     }
 }
