@@ -5,9 +5,12 @@
 //  Created by liuliu on 2021/5/27.
 //
 
+import GRDB
 import HandyJSON
 
-class Podcast: HandyJSON, Identifiable {
+struct Podcast: HandyJSON, Identifiable {
+    var id: Int64 = 0
+
     var trackId: String?
     var artistName: String?
     var trackName: String?
@@ -18,18 +21,42 @@ class Podcast: HandyJSON, Identifiable {
     var artworkUrl100: String?
     var artworkUrl600: String?
     var releaseDate: String?
-    
+
     var isSaved = false
     var summary: String?
 
-    func mapping(mapper: HelpingMapper) {
+    mutating func mapping(mapper: HelpingMapper) {
         mapper <<< trackId <-- ["id", "trackId"]
         mapper <<< trackName <-- ["trackName", "name"]
     }
-    
-    func didFinishMapping() {
-        
+}
+
+extension Podcast: FetchableRecord, MutablePersistableRecord {
+    enum Columns: String, ColumnExpression {
+        case id, trackId, artistName, trackName, feedUrl, artworkUrl100, releaseDate, summary
     }
 
-    required init() {}
+    init(row: Row) {
+        trackId = row[Columns.trackId]
+        artistName = row[Columns.artistName]
+        trackName = row[Columns.trackName]
+        feedUrl = row[Columns.feedUrl]
+        artworkUrl100 = row[Columns.artworkUrl100]
+        releaseDate = row[Columns.releaseDate]
+        summary = row[Columns.summary]
+    }
+
+    func encode(to container: inout PersistenceContainer) {
+        container[Columns.trackId] = trackId
+        container[Columns.artistName] = artistName
+        container[Columns.trackName] = trackName
+        container[Columns.feedUrl] = feedUrl
+        container[Columns.artworkUrl100] = artworkUrl100
+        container[Columns.releaseDate] = releaseDate
+        container[Columns.summary] = summary
+    }
+
+    mutating func didInsert(with rowID: Int64, for column: String?) {
+        id = rowID
+    }
 }

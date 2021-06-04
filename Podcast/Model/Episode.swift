@@ -7,7 +7,8 @@
 
 import FeedKit
 
-class Episode: Identifiable {
+struct Episode: Identifiable {
+    var id: Int64 = 0
     var title: String?
     var pubDate: Date?
     var desc: String?
@@ -20,12 +21,9 @@ class Episode: Identifiable {
     var playedTime: TimeInterval = 0
     var fileUrl: String?
 
-    convenience init(feedItem: RSSFeedItem) {
-        self.init()
-        update(feedItem: feedItem)
-    }
+    init() {}
 
-    func update(feedItem: RSSFeedItem) {
+    init(feedItem: RSSFeedItem) {
         title = feedItem.title
         pubDate = feedItem.pubDate ?? Date()
         desc = feedItem.content?.contentEncoded ?? feedItem.iTunes?.iTunesSummary
@@ -35,7 +33,7 @@ class Episode: Identifiable {
         streamUrl = feedItem.enclosure?.attributes?.url
         duration = feedItem.iTunes?.iTunesDuration ?? 0
     }
-    
+
     var playUrl: URL? {
         var url: URL?
         if let fileUrl = fileUrl {
@@ -54,7 +52,7 @@ extension RSSFeed {
 
         var episodes: [Episode] = []
         items?.forEach({ feedItem in
-            let episode = Episode(feedItem: feedItem)
+            var episode = Episode(feedItem: feedItem)
 
             if episode.imageUrl == nil {
                 episode.imageUrl = imageUrl

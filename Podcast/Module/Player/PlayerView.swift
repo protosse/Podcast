@@ -73,7 +73,7 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        let episode = Episode()
+        var episode = Episode()
         episode.title = "25位小朋友眼里的成人世界"
         episode.author = "kouaizhe"
         episode.imageUrl = "https://static.storyfm.cn/media/2020/01/600x600-满.jpg"

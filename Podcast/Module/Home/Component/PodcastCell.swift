@@ -36,7 +36,7 @@ struct PodcastCell: View {
 
 struct PodcastCell_Previews: PreviewProvider {
     static var previews: some View {
-        let model = Podcast()
+        var model = Podcast()
         model.trackName = "直到地狱尽头"
         model.artistName = "机核网"
         model.releaseDate = "2016-03-29"
