@@ -9,5 +9,9 @@ import Combine
 import Foundation
 
 class HomeViewModel: HasSubscriptions, ObservableObject {
+    @Published var dataSource: [Podcast] = []
     
+    func request() {
+        dataSource = Podcast.collectedPodcast() ?? []
+    }
 }

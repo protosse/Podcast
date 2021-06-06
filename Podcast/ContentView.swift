@@ -16,6 +16,9 @@ struct ContentView: View {
         UINavigationBar.appearance().barTintColor = R.color.defaultBackground()
     }
 
+    @State var isHideMiniPlayerView = false
+    @ObservedObject var audioPlayerManager = AudioPlayerManager.share
+
     var body: some View {
         let miniPlayerHeight: CGFloat = 120
         return
@@ -38,6 +41,11 @@ struct ContentView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             .navigationViewStyle(StackNavigationViewStyle())
+            .onLoad(perform: onload)
+    }
+
+    func onload() {
+//        self.isHideMiniPlayerView = audioPlayerManager.currentEpisode == nil
     }
 }
 

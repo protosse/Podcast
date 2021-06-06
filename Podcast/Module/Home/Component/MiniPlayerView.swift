@@ -6,40 +6,55 @@
 //
 
 import SwiftUI
+import Combine
+import Kingfisher
 
 struct MiniPlayerView: View {
     private let buttonWidth: CGFloat = 54
     @State private var progress: CGFloat = 0
+    @ObservedObject var audioPlayerManager = AudioPlayerManager.share
 
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Image(systemName: "rosette")
-                    .frame(width: 40, height: 40)
-                Text("asd")
-                    .font(.system(size: 13))
-                    .foregroundColor(.white)
-                    .lineLimit(1)
+        GeometryReader { g in
+            VStack {
                 Spacer()
+                VStack {
+                    HStack {
+                        KFImage(URL(string: audioPlayerManager.currentEpisode?.imageUrl ?? ""))
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                        Text(audioPlayerManager.currentEpisode?.title ?? "")
+                            .font(.system(size: 13))
+                            .foregroundColor(.white)
+                            .lineLimit(1)
+                        Spacer()
+                    }
+                    .visualEffect()
+                    .frame(height: 80)
+                    .overlay({
+                        PlayButton(width: buttonWidth, progress: $progress,
+                                   isPlaying: $audioPlayerManager.isPlaying)
+                            .offset(x: -50, y: -buttonWidth / 2)
+                    }(), alignment: .topTrailing)
+                    .onTapGesture {
+                    }
+                    Spacer().frame(height: g.safeAreaInsets.bottom)
+                }
+                .background(Color(.white).opacity(0.1))
             }
-            .visualEffect()
-            .frame(height: 80)
-            .background(Color(.white).opacity(0.1))
-            .overlay({
-                PlayButton(width: buttonWidth, progress: $progress)
-                    .offset(x: -50, y: -buttonWidth / 2)
-            }(), alignment: .topTrailing)
-            .onTapGesture {
-            }
-        }
-        .background(Color(.clear))
+            .edgesIgnoringSafeArea(.bottom)
+        }.onLoad(perform: onLoad)
+    }
+    
+    func onLoad() {
+        progress = CGFloat(audioPlayerManager.currentProgress) / 100.0
     }
 }
 
 struct PlayButton: View {
     var width: CGFloat = 54
     @Binding var progress: CGFloat
+    @Binding var isPlaying: Bool
 
     private let lineWidth: CGFloat = 5
 
@@ -55,7 +70,7 @@ struct PlayButton: View {
                 .animation(.linear)
 
             Button(action: {}) {
-                Image(systemName: "play.fill")
+                Image(systemName: isPlaying ? "pause.fill" : "play.fill")
             }
             .frame(width: width - lineWidth, height: width - lineWidth)
             .background(Color.white)
@@ -67,8 +82,10 @@ struct PlayButton: View {
 
 struct MiniPlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        MiniPlayerView()
-            .previewLayout(.fixed(width: 320, height: 120))
-            .background(Color(R.color.defaultBackground.name))
+        ZStack {
+            Color(R.color.defaultBackground.name).ignoresSafeArea()
+            MiniPlayerView()
+                .previewLayout(.sizeThatFits)
+        }
     }
 }

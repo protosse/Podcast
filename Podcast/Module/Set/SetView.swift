@@ -5,29 +5,41 @@
 //  Created by liuliu on 2021/5/28.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct SetView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
+        NavigationView {
         ZStack {
             Color(R.color.defaultBackground.name).ignoresSafeArea()
             VStack {
-                Text("Setting").foregroundColor(.white)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 15) {
                         HStack {
-                            Button(action: {}) {
+                            Button(action: {
+                                KingfisherManager.shared.cache.clearCache()
+                                DB.share.clearUnImportant()
+                            }) {
                                 Text("Clear Cache").foregroundColor(.white)
                             }
                             Spacer()
                         }
                         HStack {
-                            Button(action: {}) {
-                                Text("About").foregroundColor(.white)
+                            NavigationLink(destination: LicenseView()) {
+                                Text("License").foregroundColor(.white)
                             }
                             Spacer()
+                        }
+                        HStack {
+                            Button(action: {}) {
+                                Text("Version").foregroundColor(.white)
+                            }
+                            Spacer()
+                            Text(UIApplication.shared.version ?? "")
+                                .foregroundColor(.white)
                         }
                     }
                     .padding(.horizontal, 15)
@@ -42,7 +54,10 @@ struct SetView: View {
                     .background(Color.accentColor)
                     .clipShape(Circle())
                 }
+                Spacer().frame(height: 40)
             }
+        }
+        .navigationBarTitle(Text("Setting"), displayMode: .inline)
         }
     }
 }

@@ -90,6 +90,9 @@
 		779A40ED2660DD9B00440C2E /* UIImage+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A40EC2660DD9B00440C2E /* UIImage+Common.swift */; };
 		779A40F02660E26400440C2E /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A40EF2660E26400440C2E /* LibraryView.swift */; };
 		779A40F22660E27200440C2E /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A40F12660E27200440C2E /* SetView.swift */; };
+		77A1DEB6266C9E0A00295E99 /* Pods-Podcast-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77A1DEB5266C9E0A00295E99 /* Pods-Podcast-acknowledgements.plist */; };
+		77A1DEB8266C9E7900295E99 /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A1DEB7266C9E7900295E99 /* LicenseView.swift */; };
+		77A1DEBA266CF28900295E99 /* EpisodeLastPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A1DEB9266CF28900295E99 /* EpisodeLastPlay.swift */; };
 		77AA48D026647CCB009D77AE /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48CF26647CCB009D77AE /* SearchHistory.swift */; };
 		77AA48D226647CD9009D77AE /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA48D126647CD9009D77AE /* SearchHistoryViewModel.swift */; };
 		77AA48DB2664A357009D77AE /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA48DA2664A357009D77AE /* WrappingHStack */; };
@@ -200,6 +203,9 @@
 		779A40EC2660DD9B00440C2E /* UIImage+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Common.swift"; sourceTree = "<group>"; };
 		779A40EF2660E26400440C2E /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		779A40F12660E27200440C2E /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
+		77A1DEB5266C9E0A00295E99 /* Pods-Podcast-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-Podcast-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Podcast/Pods-Podcast-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		77A1DEB7266C9E7900295E99 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
+		77A1DEB9266CF28900295E99 /* EpisodeLastPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeLastPlay.swift; sourceTree = "<group>"; };
 		77AA48CF26647CCB009D77AE /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
 		77AA48D126647CD9009D77AE /* SearchHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewModel.swift; sourceTree = "<group>"; };
 		77AA48EB2664CB5C009D77AE /* PodcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
@@ -284,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				775373A726672BEC00AF8C82 /* Animation */,
+				77A1DEB5266C9E0A00295E99 /* Pods-Podcast-acknowledgements.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -515,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				779A40F12660E27200440C2E /* SetView.swift */,
+				77A1DEB7266C9E7900295E99 /* LicenseView.swift */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -658,6 +666,7 @@
 			children = (
 				77F4B924265F8E7D0050D829 /* Podcast.swift */,
 				779A40DF2660B76500440C2E /* Episode.swift */,
+				77A1DEB9266CF28900295E99 /* EpisodeLastPlay.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -751,6 +760,7 @@
 				7753739426672AEF00AF8C82 /* BallTrail.sks in Resources */,
 				7753739726672AEF00AF8C82 /* GameScene.sks in Resources */,
 				77F4B8A4265F48560050D829 /* Preview Assets.xcassets in Resources */,
+				77A1DEB6266C9E0A00295E99 /* Pods-Podcast-acknowledgements.plist in Resources */,
 				775373A826672BEC00AF8C82 /* Animation in Resources */,
 				77F4B8A1265F48560050D829 /* Assets.xcassets in Resources */,
 				7753739526672AEF00AF8C82 /* BrokenPlatform.sks in Resources */,
@@ -874,6 +884,7 @@
 				77898CDE2664EE6A00C3AEFA /* BaseViewController.swift in Sources */,
 				778678C3266865B6006AA6CC /* WebViewRepresentable.swift in Sources */,
 				779A40E22660BB5000440C2E /* Combine+Common.swift in Sources */,
+				77A1DEBA266CF28900295E99 /* EpisodeLastPlay.swift in Sources */,
 				775373ED266773ED00AF8C82 /* AudioPlayer+QualityAdjustmentEvent.swift in Sources */,
 				775373DA266773ED00AF8C82 /* BackgroundHandler.swift in Sources */,
 				77F4B91A265F6A650050D829 /* MiniPlayerView.swift in Sources */,
@@ -888,6 +899,7 @@
 				779A40E02660B76500440C2E /* Episode.swift in Sources */,
 				7769F2032665FD6800806BEA /* PodcastDetailListViewController.swift in Sources */,
 				778678D52668BC3F006AA6CC /* ViewExtension.swift in Sources */,
+				77A1DEB8266C9E7900295E99 /* LicenseView.swift in Sources */,
 				77AA48EE2664CB66009D77AE /* PodcastViewModel.swift in Sources */,
 				775373AD2667578700AF8C82 /* UIControl+Combine.swift in Sources */,
 				7753739126672AEF00AF8C82 /* GameViewController.swift in Sources */,

@@ -34,7 +34,7 @@ enum AudioPlayMode: Int, CaseIterable {
     }
 }
 
-class AudioPlayerManager: ObservableObject {
+class AudioPlayerManager: ObservableObject, HasSubscriptions {
     static let share = AudioPlayerManager()
 
     lazy var player = AudioPlayer().then {
@@ -53,6 +53,22 @@ class AudioPlayerManager: ObservableObject {
 
     @Published var currentEpisode: Episode?
     var episodesQueue: [Episode] = []
+
+    var episodeLastPlay: EpisodeLastPlay = EpisodeLastPlay.default()
+    
+    init() {
+        if !episodeLastPlay.episodeStreamUrl.isNilOrEmpty {
+            currentEpisode = episodeLastPlay.episode
+        }
+        
+        $currentEpisode
+            .dropFirst()
+            .sink { episode in
+                guard let episode = episode, let lastPlay = self.episodeLastPlay.replace(episode: episode) else { return }
+                self.episodeLastPlay = lastPlay
+            }
+            .store(in: &subscriptions)
+    }
 
     func play(episode: Episode) {
         if player.state == .playing, let current = currentEpisode, current.streamUrl == episode.streamUrl {

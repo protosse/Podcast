@@ -9,9 +9,8 @@ import FeedKit
 import GRDB
 
 struct Episode: Identifiable {
-    var id: Int64 = 0
+    var id = UUID()
 
-    var uid: Int64 = 0
     var title: String?
     var pubDate: Date?
     var desc: String?
@@ -74,16 +73,15 @@ extension RSSFeed {
     }
 }
 
-extension Episode: Codable, FetchableRecord, PersistableRecord {
+extension Episode: FetchableRecord, PersistableRecord {
     static var databaseTableName = "episode"
     static let persistenceConflictPolicy = PersistenceConflictPolicy(insert: .ignore)
 
     enum Columns: String, ColumnExpression {
-        case id, title, pubDate, desc, author, imageUrl, link, streamUrl, duration, playedTime, fileUrl, podcastId
+        case title, pubDate, desc, author, imageUrl, link, streamUrl, duration, playedTime, fileUrl, podcastId
     }
 
     init(row: Row) {
-        uid = row[Columns.id]
         title = row[Columns.title]
         pubDate = row[Columns.pubDate]
         desc = row[Columns.desc]
@@ -98,7 +96,6 @@ extension Episode: Codable, FetchableRecord, PersistableRecord {
     }
 
     func encode(to container: inout PersistenceContainer) {
-        container[Columns.id] = uid
         container[Columns.title] = title
         container[Columns.pubDate] = pubDate
         container[Columns.desc] = desc

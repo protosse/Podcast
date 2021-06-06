@@ -42,10 +42,10 @@ struct SearchView: View {
             }
             .navigationBarHidden(true)
         }
-        .onLoad(perform: load)
+        .onLoad(perform: onLoad)
     }
 
-    func load() {
+    func onLoad() {
         viewModel.bind()
         viewModel.requestTopPodcasts()
     }

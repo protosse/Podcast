@@ -20,7 +20,7 @@ enum ArtworkQuality: Int, CaseIterable {
 }
 
 struct Podcast: HandyJSON, Identifiable {
-    var id: Int64 = 0
+    var id = UUID()
 
     var trackId: String?
     var artistName: String?
@@ -98,6 +98,13 @@ extension Podcast {
     var episodes: [Episode]? {
         return try? DB.share.dbQueue?.read({ db in
             let data = try self.request(for: Podcast.episodes).fetchAll(db)
+            return data
+        })
+    }
+
+    static func collectedPodcast() -> [Podcast]? {
+        return try? DB.share.dbQueue?.read({ db in
+            let data = try Podcast.filter(Columns.isCollected == true).fetchAll(db)
             return data
         })
     }

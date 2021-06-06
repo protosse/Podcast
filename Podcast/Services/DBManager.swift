@@ -69,9 +69,28 @@ class DB {
                 }
             }
 
+            migrator.registerMigration("lastPlay") { db in
+                try db.create(table: "episodeLastPlay") { t in
+                    t.autoIncrementedPrimaryKey("id")
+                    t.column("episodeStreamUrl", .text)
+                        .notNull()
+                        .references("episode", onDelete: .cascade)
+                }
+            }
+
             try migrator.migrate(queue)
         } catch {
             log.debug("migrate error")
         }
+    }
+
+    func clearUnImportant() {
+        dbQueue?.asyncWrite({ db in
+            let podcasts = Podcast.filter(Podcast.Columns.isCollected != true)
+            try podcasts.fetchAll(db).forEach { try $0.request(for: Podcast.episodes).deleteAll(db) }
+            try podcasts.deleteAll(db)
+        }, completion: { _, _ in
+
+        })
     }
 }
