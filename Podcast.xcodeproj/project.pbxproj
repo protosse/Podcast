@@ -104,6 +104,7 @@
 		77BD0AA626612404002A0A73 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD0AA526612404002A0A73 /* PodcastCell.swift */; };
 		77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */; };
 		77C78F942669F3B400541E48 /* SwiftUI+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C78F932669F3B400541E48 /* SwiftUI+Device.swift */; };
+		77E00275266DF0DA006B92B9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77E00274266DF0DA006B92B9 /* Launch Screen.storyboard */; };
 		77F4B89D265F48540050D829 /* PodcastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B89C265F48540050D829 /* PodcastApp.swift */; };
 		77F4B89F265F48540050D829 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B89E265F48540050D829 /* ContentView.swift */; };
 		77F4B8A1265F48560050D829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77F4B8A0265F48560050D829 /* Assets.xcassets */; };
@@ -217,6 +218,7 @@
 		77BD0AA526612404002A0A73 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+HandyJSON.swift"; sourceTree = "<group>"; };
 		77C78F932669F3B400541E48 /* SwiftUI+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Device.swift"; sourceTree = "<group>"; };
+		77E00274266DF0DA006B92B9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		77F4B899265F48540050D829 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F4B89C265F48540050D829 /* PodcastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastApp.swift; sourceTree = "<group>"; };
 		77F4B89E265F48540050D829 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				77F4B89C265F48540050D829 /* PodcastApp.swift */,
 				77F4B89E265F48540050D829 /* ContentView.swift */,
 				77F4B91C265F73AA0050D829 /* R.generated.swift */,
+				77E00274266DF0DA006B92B9 /* Launch Screen.storyboard */,
 				77F4B8A0265F48560050D829 /* Assets.xcassets */,
 				77F4B8A5265F48560050D829 /* Info.plist */,
 				77F4B8A2265F48560050D829 /* Preview Content */,
@@ -762,6 +765,7 @@
 			files = (
 				7753739426672AEF00AF8C82 /* BallTrail.sks in Resources */,
 				7753739726672AEF00AF8C82 /* GameScene.sks in Resources */,
+				77E00275266DF0DA006B92B9 /* Launch Screen.storyboard in Resources */,
 				77F4B8A4265F48560050D829 /* Preview Assets.xcassets in Resources */,
 				77A1DEB6266C9E0A00295E99 /* Pods-Podcast-acknowledgements.plist in Resources */,
 				775373A826672BEC00AF8C82 /* Animation in Resources */,
