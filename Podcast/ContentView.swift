@@ -16,7 +16,6 @@ struct ContentView: View {
         UINavigationBar.appearance().barTintColor = R.color.defaultBackground()
     }
 
-    @State var isHideMiniPlayerView = false
     var audioPlayerManager = AudioPlayerManager.share
 
     var body: some View {
@@ -28,25 +27,12 @@ struct ContentView: View {
                     LibraryView()
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-
-                if !isHideMiniPlayerView {
-                    VStack {
-                        Spacer()
-                        MiniPlayerView()
-                            .frame(height: 120)
-                    }
-                }
             }
             .environmentObject(audioPlayerManager)
             .navigationBarHidden(true)
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear(perform: onAppear)
-    }
-
-    func onAppear() {
-        self.isHideMiniPlayerView = audioPlayerManager.currentEpisode == nil
     }
 }
 

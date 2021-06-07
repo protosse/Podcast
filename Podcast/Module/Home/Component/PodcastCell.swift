@@ -16,6 +16,7 @@ struct PodcastCell: View {
             KFImage(URL(string: model.artworkUrl()))
                 .resizable()
                 .frame(width: 80, height: 80)
+                .cornerRadius(10)
             VStack(alignment: .leading, spacing: 15) {
                 Text(model.trackName ?? "")
                     .font(.system(size: 14))

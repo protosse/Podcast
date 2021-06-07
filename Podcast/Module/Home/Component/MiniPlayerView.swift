@@ -14,6 +14,8 @@ struct MiniPlayerView: View {
     @State private var isPresentPlay = false
     @State private var progress: CGFloat = 0
     @EnvironmentObject var audioPlayerManager: AudioPlayerManager
+    
+    var model: Episode?
 
     var body: some View {
         GeometryReader { g in
@@ -21,11 +23,10 @@ struct MiniPlayerView: View {
                 Spacer()
                 VStack {
                     HStack {
-                        // 这里的KFImage有问题，刷不出图片又无限刷新
-//                        KFImage(URL(string: "https://static.gcores.com/assets/52fcb59ad1e09abecec58d39da6731cb.jpg"))
-//                            .resizable()
-//                            .cornerRadius(10)
-//                            .frame(width: 40, height: 40)
+                        KFImage(URL(string: audioPlayerManager.currentEpisode?.imageUrl))
+                            .resizable()
+                            .cornerRadius(10)
+                            .frame(width: 40, height: 40)
                         Text(audioPlayerManager.currentEpisode?.title ?? "")
                             .font(.system(size: 13))
                             .foregroundColor(.white)

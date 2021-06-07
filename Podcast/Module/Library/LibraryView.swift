@@ -10,6 +10,8 @@ import SwiftUI
 struct LibraryView: View {
     @ObservedObject var viewModel = LibraryViewModel()
     @State private var isPresentPlay = false
+    
+    @EnvironmentObject var audioPlayerManager: AudioPlayerManager
 
     var body: some View {
         ScrollView {
@@ -25,7 +27,7 @@ struct LibraryView: View {
             }
         }
         .sheet(isPresented: $isPresentPlay, content: {
-            PlayerView(episode: viewModel.selectedModel)
+            PlayerView(episode: viewModel.selectedModel).environmentObject(audioPlayerManager)
         })
         .onAppear(perform: onAppear)
     }

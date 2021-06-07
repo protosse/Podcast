@@ -10,61 +10,77 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var viewModel = HomeViewModel()
+    
+    @EnvironmentObject var audioPlayerManager: AudioPlayerManager
 
     @State private var isPresentSearch = false
     @State private var isPresentSet = false
+    
+    @State private var isHideMiniPlayer = false
 
     var body: some View {
-        VStack {
-            HStack(spacing: 15) {
-                Spacer()
-                Button(action: {
-                    self.isPresentSet.toggle()
-                }) {
-                    Image(systemName: "gear")
-                }
+        ZStack {
+            VStack {
+                HStack(spacing: 15) {
+                    Spacer()
+                    Button(action: {
+                        self.isPresentSet.toggle()
+                    }) {
+                        Image(systemName: "gear")
+                    }
 
-                Button(action: {
-                    self.isPresentSearch.toggle()
-                }) {
-                    Image(systemName: "magnifyingglass")
+                    Button(action: {
+                        self.isPresentSearch.toggle()
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .padding(.trailing, 15)
                 }
-                .padding(.trailing, 15)
-            }
-            .frame(height: 44)
+                .frame(height: 44)
 
-            GeometryReader { g in
-                let s: CGFloat = 10
-                let w: CGFloat = (g.size.width - 20 - s * 2) / 3
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: w))], spacing: s) {
-                        ForEach(viewModel.dataSource) { model in
-                            NavigationLink(destination: PodcastView(podcast: model)) {
-                                VStack {
-                                    KFImage(URL(string: model.artworkUrl(.Large)))
-                                        .resizable()
-                                        .aspectRatio(1, contentMode: .fill)
-                                        .frame(width: w)
-                                        .cornerRadius(10)
+                GeometryReader { g in
+                    let s: CGFloat = 10
+                    let w: CGFloat = (g.size.width - 20 - s * 2) / 3
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: w))], spacing: s) {
+                            ForEach(viewModel.dataSource) { model in
+                                NavigationLink(destination: PodcastView(podcast: model)) {
+                                    VStack {
+                                        KFImage(URL(string: model.artworkUrl(.Large)))
+                                            .resizable()
+                                            .aspectRatio(1, contentMode: .fill)
+                                            .frame(width: w)
+                                            .cornerRadius(10)
+                                    }
                                 }
                             }
                         }
                     }
+                    .padding(.horizontal, 10)
                 }
-                .padding(.horizontal, 10)
+            }
+            
+            if !isHideMiniPlayer {
+                VStack {
+                    Spacer()
+                    MiniPlayerView()
+                        .environmentObject(audioPlayerManager)
+                        .frame(height: 120)
+                }
             }
         }
-        .onAppear(perform: onAppear)
         .fullScreenCover(isPresented: $isPresentSet, content: {
             SetView()
         })
         .fullScreenCover(isPresented: $isPresentSearch, content: {
             SearchView()
         })
+        .onAppear(perform: onAppear)
     }
-    
+
     func onAppear() {
         viewModel.request()
+        isHideMiniPlayer = audioPlayerManager.currentEpisode == nil
     }
 }
 
