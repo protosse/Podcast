@@ -12,7 +12,7 @@ import WebKit
 
 struct PlayerView: View {
     @ObservedObject var viewModel: PlayerViewModel
-    @ObservedObject var audioPlayerManager = AudioPlayerManager.share
+    @EnvironmentObject var audioPlayerManager: AudioPlayerManager
 
     @State private var htmlHeight: CGFloat = 0
 

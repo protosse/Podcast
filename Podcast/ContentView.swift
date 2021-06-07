@@ -17,31 +17,30 @@ struct ContentView: View {
     }
 
     @State var isHideMiniPlayerView = false
-    @ObservedObject var audioPlayerManager = AudioPlayerManager.share
+    var audioPlayerManager = AudioPlayerManager.share
 
     var body: some View {
-        let miniPlayerHeight: CGFloat = 120
-        return
-            NavigationView {
-                ZStack {
-                    Color(R.color.defaultBackground.name).ignoresSafeArea()
-                    TabView {
-                        HomeView()
-                        LibraryView()
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-
-                    VStack {
-                        Spacer()
-                        MiniPlayerView()
-                            .frame(height: miniPlayerHeight)
-                    }
+        NavigationView {
+            ZStack {
+                Color(R.color.defaultBackground.name).ignoresSafeArea()
+                TabView {
+                    HomeView()
+                    LibraryView()
                 }
-                .navigationBarHidden(true)
-                .navigationBarTitleDisplayMode(.inline)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+
+                VStack {
+                    Spacer()
+                    MiniPlayerView()
+                        .frame(height: 120)
+                }
             }
-            .navigationViewStyle(StackNavigationViewStyle())
-            .onLoad(perform: onload)
+            .environmentObject(audioPlayerManager)
+            .navigationBarHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onLoad(perform: onload)
     }
 
     func onload() {
@@ -52,5 +51,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AudioPlayerManager.share)
     }
 }

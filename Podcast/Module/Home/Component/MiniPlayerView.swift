@@ -5,14 +5,15 @@
 //  Created by liuliu on 2021/5/27.
 //
 
-import SwiftUI
 import Combine
 import Kingfisher
+import SwiftUI
 
 struct MiniPlayerView: View {
     private let buttonWidth: CGFloat = 54
+    @State private var isPresentPlay = false
     @State private var progress: CGFloat = 0
-    @ObservedObject var audioPlayerManager = AudioPlayerManager.share
+    @EnvironmentObject var audioPlayerManager: AudioPlayerManager
 
     var body: some View {
         GeometryReader { g in
@@ -20,8 +21,9 @@ struct MiniPlayerView: View {
                 Spacer()
                 VStack {
                     HStack {
-                        KFImage(URL(string: audioPlayerManager.currentEpisode?.imageUrl ?? ""))
+                        KFImage(URL(string: "https://static.gcores.com/assets/52fcb59ad1e09abecec58d39da6731cb.jpg"))
                             .resizable()
+                            .cornerRadius(10)
                             .frame(width: 40, height: 40)
                         Text(audioPlayerManager.currentEpisode?.title ?? "")
                             .font(.system(size: 13))
@@ -29,23 +31,32 @@ struct MiniPlayerView: View {
                             .lineLimit(1)
                         Spacer()
                     }
+                    .padding(.horizontal, 10)
                     .visualEffect()
                     .frame(height: 80)
                     .overlay({
                         PlayButton(width: buttonWidth, progress: $progress,
-                                   isPlaying: $audioPlayerManager.isPlaying)
+                                   isPlaying: $audioPlayerManager.isPlaying, action: {
+                                    AudioPlayerManager.share.pauseOrResume()
+                                   })
                             .offset(x: -50, y: -buttonWidth / 2)
                     }(), alignment: .topTrailing)
                     .onTapGesture {
+                        isPresentPlay.toggle()
                     }
                     Spacer().frame(height: g.safeAreaInsets.bottom)
                 }
                 .background(Color(.white).opacity(0.1))
             }
             .edgesIgnoringSafeArea(.bottom)
-        }.onLoad(perform: onLoad)
+        }
+        .onLoad(perform: onLoad)
+        .sheet(isPresented: $isPresentPlay) {
+            PlayerView(episode: audioPlayerManager.currentEpisode!)
+                .environmentObject(audioPlayerManager)
+        }
     }
-    
+
     func onLoad() {
         progress = CGFloat(audioPlayerManager.currentProgress) / 100.0
     }
@@ -55,26 +66,27 @@ struct PlayButton: View {
     var width: CGFloat = 54
     @Binding var progress: CGFloat
     @Binding var isPlaying: Bool
+    var action: VoidBlock
 
     private let lineWidth: CGFloat = 5
 
     var body: some View {
-        ZStack {
-            Circle()
-                .trim(from: 0.0, to: min(self.progress, 1.0))
-                .stroke(style: StrokeStyle(lineWidth: lineWidth,
-                                           lineCap: .round,
-                                           lineJoin: .round))
-                .foregroundColor(.accentColor)
-                .rotationEffect(Angle(degrees: 270.0))
-                .animation(.linear)
+        Button(action: action) {
+            ZStack {
+                Circle()
+                    .trim(from: 0.0, to: min(self.progress, 1.0))
+                    .stroke(style: StrokeStyle(lineWidth: lineWidth,
+                                               lineCap: .round,
+                                               lineJoin: .round))
+                    .foregroundColor(.accentColor)
+                    .rotationEffect(Angle(degrees: 270.0))
+                    .animation(.linear)
 
-            Button(action: {}) {
                 Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                    .frame(width: width - lineWidth, height: width - lineWidth)
+                    .background(Color.white)
+                    .clipShape(Circle())
             }
-            .frame(width: width - lineWidth, height: width - lineWidth)
-            .background(Color.white)
-            .clipShape(Circle())
         }
         .frame(width: width, height: width)
     }

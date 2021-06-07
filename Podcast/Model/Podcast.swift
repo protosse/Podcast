@@ -5,6 +5,7 @@
 //  Created by liuliu on 2021/5/27.
 //
 
+import Combine
 import GRDB
 import HandyJSON
 
@@ -107,6 +108,17 @@ extension Podcast {
             let data = try Podcast.filter(Columns.isCollected == true).fetchAll(db)
             return data
         })
+    }
+
+    static func collectedPodcastPublish() -> AnyPublisher<[Podcast], Error> {
+        guard let queue = DB.share.dbQueue else {
+            return .empty()
+        }
+
+        let publisher = ValueObservation
+            .tracking { db in try Podcast.filter(Columns.isCollected == true).fetchAll(db) }
+            .publisher(in: queue)
+        return publisher.eraseToAnyPublisher()
     }
 
     static func fetch(id: String) -> Podcast? {

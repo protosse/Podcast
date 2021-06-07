@@ -113,7 +113,7 @@ extension PodcastDetailListViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = dataSource[indexPath.row]
-        self.present(UIHostingController(rootView: PlayerView(episode: model)), animated: true)
+        self.present(UIHostingController(rootView: PlayerView(episode: model).environmentObject(AudioPlayerManager.share)), animated: true)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

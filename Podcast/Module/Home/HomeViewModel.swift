@@ -7,11 +7,17 @@
 
 import Combine
 import Foundation
+import GRDB
 
 class HomeViewModel: HasSubscriptions, ObservableObject {
     @Published var dataSource: [Podcast] = []
-    
-    func request() {
-        dataSource = Podcast.collectedPodcast() ?? []
+
+    init() {
+        Podcast.collectedPodcastPublish()
+            .sink { _ in }
+        receiveValue: { [weak self] data in
+            self?.dataSource = data
+        }
+        .store(in: &subscriptions)
     }
 }

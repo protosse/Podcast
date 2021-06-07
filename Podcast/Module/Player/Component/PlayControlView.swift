@@ -9,7 +9,7 @@ import Introspect
 import SwiftUI
 
 struct PlayControlView: View {
-    @ObservedObject var audioPlayerManager = AudioPlayerManager.share
+    @EnvironmentObject var audioPlayerManager: AudioPlayerManager
 
     @State private var draggedOffset: CGFloat = 0
     @State private var isShowFull = false
