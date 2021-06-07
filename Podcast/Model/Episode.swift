@@ -8,7 +8,7 @@
 import FeedKit
 import GRDB
 
-struct Episode: Identifiable {
+final class Episode: Identifiable {
     var id = UUID()
 
     var title: String?
@@ -56,7 +56,7 @@ extension RSSFeed {
 
         var episodes: [Episode] = []
         items?.forEach({ feedItem in
-            var episode = Episode(feedItem: feedItem)
+            let episode = Episode(feedItem: feedItem)
 
             if episode.imageUrl == nil {
                 episode.imageUrl = imageUrl
@@ -81,7 +81,8 @@ extension Episode: FetchableRecord, PersistableRecord {
         case title, pubDate, desc, author, imageUrl, link, streamUrl, duration, playedTime, fileUrl, podcastId
     }
 
-    init(row: Row) {
+    convenience init(row: Row) {
+        self.init()
         title = row[Columns.title]
         pubDate = row[Columns.pubDate]
         desc = row[Columns.desc]
@@ -115,6 +116,17 @@ extension Episode {
     var podcast: QueryInterfaceRequest<Podcast> {
         request(for: Episode.podcast)
     }
+    
+    func updateDB() {
+        do {
+            try DB.share.dbQueue?.write({ db in
+                try self.update(db)
+            })
+        } catch let e {
+            log.error(e.localizedDescription)
+        }
+    }
+
 
     static func allSaved() -> [Episode] {
         let data = try? DB.share.dbQueue?.read({ db -> [Episode] in

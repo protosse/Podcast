@@ -22,6 +22,7 @@ struct SetView: View {
                             Button(action: {
                                 KingfisherManager.shared.cache.clearCache()
                                 DB.share.clearUnImportant()
+                                ITunesService.share.downloadManager.cache.clearDiskCache()
                             }) {
                                 Text("Clear Cache").foregroundColor(.white)
                             }

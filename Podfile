@@ -26,6 +26,7 @@ target 'Podcast' do
     pod 'SwifterSwift'
     pod 'HandyJSON'
     pod 'FeedKit'
+    pod 'FileKit'
     pod 'AcknowList'
     pod 'SwiftyUserDefaults'
     pod 'ACBAVPlayer'

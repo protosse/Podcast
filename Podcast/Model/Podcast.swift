@@ -20,7 +20,7 @@ enum ArtworkQuality: Int, CaseIterable {
     }
 }
 
-struct Podcast: HandyJSON, Identifiable {
+final class Podcast: HandyJSON, Identifiable {
     var id = UUID()
 
     var trackId: String?
@@ -37,7 +37,7 @@ struct Podcast: HandyJSON, Identifiable {
     var isCollected = false
     var summary: String?
 
-    mutating func mapping(mapper: HelpingMapper) {
+    func mapping(mapper: HelpingMapper) {
         mapper <<< trackId <-- ["id", "trackId"]
         mapper <<< trackName <-- ["trackName", "name"]
     }
@@ -54,6 +54,8 @@ struct Podcast: HandyJSON, Identifiable {
         }
         return url ?? ""
     }
+    
+    required init() {}
 }
 
 extension Podcast: FetchableRecord, PersistableRecord {
@@ -64,7 +66,8 @@ extension Podcast: FetchableRecord, PersistableRecord {
         case id, artistName, trackName, feedUrl, artworkUrl30, artworkUrl60, artworkUrl100, artworkUrl600, releaseDate, isCollected, summary
     }
 
-    init(row: Row) {
+    convenience init(row: Row) {
+        self.init()
         trackId = row[Columns.id]
         artistName = row[Columns.artistName]
         trackName = row[Columns.trackName]
@@ -127,12 +130,9 @@ extension Podcast {
     }
 
     func updateDB(episodes: [Episode]) {
-        DB.share.dbQueue?.asyncWrite({ db in
-            try self.insert(db)
-            let count = episodes.count
-            for i in 0 ..< count {
-                var episode = episodes[i]
-                episode.podcastId = trackId
+        DB.share.dbQueue?.asyncWrite({ [weak self] db in
+            try self?.insert(db)
+            for episode in episodes {
                 try episode.insert(db)
             }
         }, completion: { _, _ in

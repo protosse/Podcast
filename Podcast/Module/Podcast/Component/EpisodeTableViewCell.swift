@@ -40,6 +40,9 @@ class EpisodeTableViewCell: MGSwipeTableCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    var task: DownloadTask?
+    var model: Episode?
+
     private func layout() {
         contentImageView.pin.top(10).width(80).height(80).left(20)
 
@@ -62,9 +65,58 @@ class EpisodeTableViewCell: MGSwipeTableCell {
     }
 
     func configure(with model: Episode) {
+        self.model = model
         contentImageView.kf.setImage(model.imageUrl)
         titleLabel.text = model.title
         releaseDateLabel.text = secondsToHourMinutes(Int(model.duration))
+        
+        let rightButton: UIButton
+        if model.fileUrl.isNilOrEmpty {
+            rightButton = MGSwipeButton(title: "Delete", icon: nil, backgroundColor: self.backgroundColor, callback: { cell -> Bool in
+                guard let cell = cell as? EpisodeTableViewCell else { return true }
+                cell.delete()
+                return true
+            })
+        }else {
+            rightButton = MGSwipeButton(title: "Download", icon: nil, backgroundColor: self.backgroundColor, callback: { cell -> Bool in
+                guard let cell = cell as? EpisodeTableViewCell else { return true }
+                cell.download()
+                return true
+            })
+        }
+
+        let buttons = [rightButton]
+        buttons.forEach {
+            $0.setTitleColor(.white, for: .normal)
+        }
+        self.rightButtons = buttons
+        self.swipeBackgroundColor = .clear
+    }
+
+    func download() {
+        guard var model = model, let url = model.streamUrl else { return }
+        if let task = ITunesService.share.downloadManager.fetchTask(url) {
+            if self.task == nil {
+                self.task = task
+            }
+        } else {
+            task = ITunesService.share.downloadManager.download(url)
+            task?.progress { [weak self] t in
+                
+            }.success { [weak self] t in
+                guard let fileUrl = FilePath.share.save(episode: t.filePath) else { return }
+                model.fileUrl = fileUrl
+                model.updateDB()
+                self?.configure(with: model)
+            }.failure { [weak self] t in
+                
+            }
+        }
+    }
+    
+    func delete() {
+        guard let fileUrl = model?.fileUrl else { return }
+        
     }
 
     func updateTask(_ task: DownloadTask) {

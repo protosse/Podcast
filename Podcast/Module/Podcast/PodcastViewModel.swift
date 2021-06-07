@@ -65,6 +65,9 @@ class PodcastViewModel: ObservableObject, HasSubscriptions {
                 tempPodcast.summary = summary
                 tempPodcast.isCollected = self.isCollected
                 self.podcast = tempPodcast
+                for episode in data {
+                    episode.podcastId = self.podcast.trackId
+                }
                 tempPodcast.updateDB(episodes: data)
                 self.refreshState = data.isEmpty ? .empty : .content
                 self.dataSource = data

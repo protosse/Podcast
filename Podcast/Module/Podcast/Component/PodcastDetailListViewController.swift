@@ -7,8 +7,8 @@
 
 import JXPagingView
 import MGSwipeTableCell
-import UIKit
 import SwiftUI
+import UIKit
 
 class PodcastDetailListViewController: BaseViewController, BindableType, HasSubscriptions {
     var listViewDidScrollCallback: ((UIScrollView) -> Void)?
@@ -93,27 +93,28 @@ extension PodcastDetailListViewController: UITableViewDelegate, UITableViewDataS
         let model = dataSource[indexPath.row]
         cell.configure(with: model)
 
-//        let download = MGSwipeButton(title: "Download", icon: nil, backgroundColor: cell.backgroundColor, callback: { [weak self] cell -> Bool in
-//            guard let self = self, let cell = cell as? EpisodeTableViewCell else { return true }
-//            return true
-//        })
-//
-//        let delete = MGSwipeButton(title: "Delete", icon: nil, backgroundColor: cell.backgroundColor, callback: { _ -> Bool in
-//            true
-//        })
-//
-//        let buttons = [delete, download]
-//        buttons.forEach {
-//            $0.setTitleColor(.white, for: .normal)
-//        }
-//        cell.rightButtons = buttons
-//        cell.swipeBackgroundColor = .clear
+        let download = MGSwipeButton(title: "Download", icon: nil, backgroundColor: cell.backgroundColor, callback: { cell -> Bool in
+            guard let cell = cell as? EpisodeTableViewCell, let url = model.streamUrl else { return true }
+            cell.download()
+            return true
+        })
+
+        let delete = MGSwipeButton(title: "Delete", icon: nil, backgroundColor: cell.backgroundColor, callback: { _ -> Bool in
+            true
+        })
+
+        let buttons = [delete, download]
+        buttons.forEach {
+            $0.setTitleColor(.white, for: .normal)
+        }
+        cell.rightButtons = buttons
+        cell.swipeBackgroundColor = .clear
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = dataSource[indexPath.row]
-        self.present(UIHostingController(rootView: PlayerView(episode: model).environmentObject(AudioPlayerManager.share)), animated: true)
+        present(UIHostingController(rootView: PlayerView(episode: model).environmentObject(AudioPlayerManager.share)), animated: true)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -8,6 +8,7 @@
 import Combine
 import FeedKit
 import Moya
+import Tiercel
 
 enum ITunes {
     case search(term: String, page: Int)
@@ -88,6 +89,12 @@ class ITunesService {
     init(itunes: MoyaProvider<ITunes> = MoyaProvider<ITunes>()) {
         self.itunes = itunes
     }
+    
+    var downloadManager: SessionManager = {
+        var configuration = SessionConfiguration()
+        let manager = SessionManager("default", configuration: configuration)
+        return manager
+    }()
 
     func search(_ text: String, page: Int = 1) -> AnyPublisher<[Podcast], NetError> {
         let decoder = JSONDecoder()

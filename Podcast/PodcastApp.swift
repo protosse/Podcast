@@ -34,11 +34,12 @@ struct PodcastApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onAppear(perform: load)
+                .onLoad(perform: load)
         }
     }
 
     func load() {
+        _ = FilePath.share
         _ = DB.share
         customUI()
     }

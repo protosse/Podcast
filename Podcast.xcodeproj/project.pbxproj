@@ -105,6 +105,8 @@
 		77BD0AA826613668002A0A73 /* AnyPublisher+HandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */; };
 		77C78F942669F3B400541E48 /* SwiftUI+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C78F932669F3B400541E48 /* SwiftUI+Device.swift */; };
 		77E00275266DF0DA006B92B9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77E00274266DF0DA006B92B9 /* Launch Screen.storyboard */; };
+		77E00277266E20F0006B92B9 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E00276266E20F0006B92B9 /* FilePath.swift */; };
+		77E00279266E254B006B92B9 /* PathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E00278266E254B006B92B9 /* PathExtensions.swift */; };
 		77F4B89D265F48540050D829 /* PodcastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B89C265F48540050D829 /* PodcastApp.swift */; };
 		77F4B89F265F48540050D829 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F4B89E265F48540050D829 /* ContentView.swift */; };
 		77F4B8A1265F48560050D829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77F4B8A0265F48560050D829 /* Assets.xcassets */; };
@@ -219,6 +221,8 @@
 		77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+HandyJSON.swift"; sourceTree = "<group>"; };
 		77C78F932669F3B400541E48 /* SwiftUI+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUI+Device.swift"; sourceTree = "<group>"; };
 		77E00274266DF0DA006B92B9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		77E00276266E20F0006B92B9 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
+		77E00278266E254B006B92B9 /* PathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtensions.swift; sourceTree = "<group>"; };
 		77F4B899265F48540050D829 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F4B89C265F48540050D829 /* PodcastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastApp.swift; sourceTree = "<group>"; };
 		77F4B89E265F48540050D829 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -491,6 +495,7 @@
 				779A40EC2660DD9B00440C2E /* UIImage+Common.swift */,
 				77BD0AA726613668002A0A73 /* AnyPublisher+HandyJSON.swift */,
 				7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */,
+				77E00278266E254B006B92B9 /* PathExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -663,6 +668,7 @@
 			children = (
 				77F4B91F265F8CAA0050D829 /* ITunesService.swift */,
 				77534A562668DF4E008A1140 /* DBManager.swift */,
+				77E00276266E20F0006B92B9 /* FilePath.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -887,6 +893,7 @@
 				7753739926672AEF00AF8C82 /* StatefulPlaceholderView.swift in Sources */,
 				775373E8266773ED00AF8C82 /* AudioPlayerBufferingStrategy.swift in Sources */,
 				7769F1FD2665C6B000806BEA /* PodcastDetailHeaderView.swift in Sources */,
+				77E00277266E20F0006B92B9 /* FilePath.swift in Sources */,
 				775373F4266773ED00AF8C82 /* AudioPlayerState.swift in Sources */,
 				77898CDE2664EE6A00C3AEFA /* BaseViewController.swift in Sources */,
 				778678C3266865B6006AA6CC /* WebViewRepresentable.swift in Sources */,
@@ -922,6 +929,7 @@
 				779A40DC26609F6600440C2E /* NetError+map.swift in Sources */,
 				779A40F22660E27200440C2E /* SetView.swift in Sources */,
 				77534A572668DF4E008A1140 /* DBManager.swift in Sources */,
+				77E00279266E254B006B92B9 /* PathExtensions.swift in Sources */,
 				775373DC266773ED00AF8C82 /* MPNowPlayingInfoCenter+AudioItem.swift in Sources */,
 				77898CE42664EFDD00C3AEFA /* UIColor+Gradient.swift in Sources */,
 				779A40D6266090A900440C2E /* Config.swift in Sources */,

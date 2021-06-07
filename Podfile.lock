@@ -3,6 +3,7 @@ PODS:
   - AcknowList (2.0.1)
   - Alamofire (5.4.3)
   - FeedKit (9.1.2)
+  - FileKit (5.2.0)
   - GRDB.swift (5.8.0):
     - GRDB.swift/standard (= 5.8.0)
   - GRDB.swift/standard (5.8.0)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - ACBAVPlayer
   - AcknowList
   - FeedKit
+  - FileKit
   - GRDB.swift
   - HandyJSON
   - JXPagingView/Paging
@@ -84,6 +86,7 @@ SPEC REPOS:
     - AcknowList
     - Alamofire
     - FeedKit
+    - FileKit
     - GRDB.swift
     - HandyJSON
     - JXPagingView
@@ -109,6 +112,7 @@ SPEC CHECKSUMS:
   AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
+  FileKit: 10bfd8a3023a0b09f24c9f49546cbbddf43fd464
   GRDB.swift: 9b9beec114435e1d852ad68c136cff4c71134627
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   JXPagingView: ef48a5a2392252c68db7999de38f4761a2707e2a
@@ -129,6 +133,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   Tiercel: 94b817f76bcdb7c86290b3dbd945048e94c6c153
 
-PODFILE CHECKSUM: 9183d5b06027a1c06adaf62753dbdd7f2f8700d1
+PODFILE CHECKSUM: 134debe402237f4a63fa2331f4730e5a3af9c8b4
 
 COCOAPODS: 1.10.1
