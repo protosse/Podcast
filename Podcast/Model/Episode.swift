@@ -115,4 +115,25 @@ extension Episode {
     var podcast: QueryInterfaceRequest<Podcast> {
         request(for: Episode.podcast)
     }
+
+    static func allSaved() -> [Episode] {
+        let data = try? DB.share.dbQueue?.read({ db -> [Episode] in
+            var episodes = [Episode]()
+            let podcasts = try Podcast.filter(Podcast.Columns.isCollected == true).fetchAll(db)
+            for p in podcasts {
+                let result = try p.request(for: Podcast.episodes).fetchAll(db)
+                episodes.append(contentsOf: result)
+            }
+
+            episodes.sort(by: \.pubDate) { l, r in
+                if let l = l, let r = r {
+                    return l > r
+                } else {
+                    return false
+                }
+            }
+            return episodes
+        })
+        return data ?? []
+    }
 }

@@ -37,9 +37,7 @@ struct PlayerView: View {
                         Text(viewModel.episode.title ?? "")
                             .font(.system(size: 16))
                         Spacer(minLength: 10)
-                        Button(action: {
-                            audioPlayerManager.play(episode: viewModel.episode)
-                        }) {
+                        Button(action: play) {
                             Image(systemName: "play.fill")
                         }
                         .frame(width: 35, height: 35)
@@ -59,6 +57,8 @@ struct PlayerView: View {
                 isShowSet.toggle()
             } onPlayListTap: {
                 isShowPlayList.toggle()
+            } onPlayTap: {
+                play()
             }
         }
         .bottomSheet(isPresented: $isShowSet, height: 500) {
@@ -67,6 +67,10 @@ struct PlayerView: View {
         .bottomSheet(isPresented: $isShowPlayList, height: 500) {
             PlayListView()
         }
+    }
+
+    func play() {
+        audioPlayerManager.play(episode: viewModel.episode)
     }
 }
 

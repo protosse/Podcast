@@ -11,13 +11,8 @@ import GRDB
 
 class HomeViewModel: HasSubscriptions, ObservableObject {
     @Published var dataSource: [Podcast] = []
-
-    init() {
-        Podcast.collectedPodcastPublish()
-            .sink { _ in }
-        receiveValue: { [weak self] data in
-            self?.dataSource = data
-        }
-        .store(in: &subscriptions)
+    
+    func request() {
+        self.dataSource = Podcast.collectedPodcast() ?? []
     }
 }

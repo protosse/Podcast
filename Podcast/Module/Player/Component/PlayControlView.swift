@@ -16,8 +16,9 @@ struct PlayControlView: View {
 
     @State private var labelWidth: CGFloat?
 
-    var onSetTap: VoidBlock?
-    var onPlayListTap: VoidBlock?
+    var onSetTap: VoidBlock
+    var onPlayListTap: VoidBlock
+    var onPlayTap: VoidBlock
 
     var body: some View {
         VStack(spacing: 0) {
@@ -128,9 +129,7 @@ struct PlayControlView: View {
     }
 
     fileprivate func playButton() -> some View {
-        Button(action: {
-            audioPlayerManager.pauseOrResume()
-        }, label: {
+        Button(action: onPlayTap, label: {
             Image(systemName: audioPlayerManager.isPlaying ? "pause.fill" : "play.fill")
                 .resizable()
                 .frame(width: 25, height: 25)
@@ -181,16 +180,12 @@ struct PlayControlView: View {
 
     fileprivate func setButtons() -> some View {
         HStack {
-            Button(action: {
-                onSetTap?()
-            }, label: {
+            Button(action: onSetTap, label: {
                 Image(systemName: "gearshape.fill")
             })
             Spacer()
 
-            Button(action: {
-                onPlayListTap?()
-            }, label: {
+            Button(action: onPlayListTap, label: {
                 Image(systemName: "music.note.list")
             })
             Spacer()
@@ -208,7 +203,7 @@ struct PlayControlView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            PlayControlView()
+            PlayControlView(onSetTap: {}, onPlayListTap: {}, onPlayTap: {})
                 .previewLayout(.sizeThatFits)
         }
     }

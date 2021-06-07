@@ -21,10 +21,11 @@ struct MiniPlayerView: View {
                 Spacer()
                 VStack {
                     HStack {
-                        KFImage(URL(string: "https://static.gcores.com/assets/52fcb59ad1e09abecec58d39da6731cb.jpg"))
-                            .resizable()
-                            .cornerRadius(10)
-                            .frame(width: 40, height: 40)
+                        // 这里的KFImage有问题，刷不出图片又无限刷新
+//                        KFImage(URL(string: "https://static.gcores.com/assets/52fcb59ad1e09abecec58d39da6731cb.jpg"))
+//                            .resizable()
+//                            .cornerRadius(10)
+//                            .frame(width: 40, height: 40)
                         Text(audioPlayerManager.currentEpisode?.title ?? "")
                             .font(.system(size: 13))
                             .foregroundColor(.white)
@@ -37,7 +38,7 @@ struct MiniPlayerView: View {
                     .overlay({
                         PlayButton(width: buttonWidth, progress: $progress,
                                    isPlaying: $audioPlayerManager.isPlaying, action: {
-                                    AudioPlayerManager.share.pauseOrResume()
+                                       AudioPlayerManager.share.pauseOrResume()
                                    })
                             .offset(x: -50, y: -buttonWidth / 2)
                     }(), alignment: .topTrailing)

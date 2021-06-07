@@ -56,6 +56,7 @@
 		775373F2266773ED00AF8C82 /* AudioPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373D7266773ED00AF8C82 /* AudioPlayerDelegate.swift */; };
 		775373F3266773ED00AF8C82 /* AudioPlayerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373D8266773ED00AF8C82 /* AudioPlayerMode.swift */; };
 		775373F4266773ED00AF8C82 /* AudioPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373D9266773ED00AF8C82 /* AudioPlayerState.swift */; };
+		775B9D37266DDC89007AB084 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775B9D36266DDC89007AB084 /* LibraryViewModel.swift */; };
 		7769F1FB2665C5F200806BEA /* Kingfisher+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */; };
 		7769F1FD2665C6B000806BEA /* PodcastDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */; };
 		7769F2012665FD2B00806BEA /* PodcastDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */; };
@@ -170,6 +171,7 @@
 		775373D7266773ED00AF8C82 /* AudioPlayerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerDelegate.swift; sourceTree = "<group>"; };
 		775373D8266773ED00AF8C82 /* AudioPlayerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerMode.swift; sourceTree = "<group>"; };
 		775373D9266773ED00AF8C82 /* AudioPlayerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerState.swift; sourceTree = "<group>"; };
+		775B9D36266DDC89007AB084 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Common.swift"; sourceTree = "<group>"; };
 		7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailHeaderView.swift; sourceTree = "<group>"; };
 		7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailContentViewController.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				779A40EF2660E26400440C2E /* LibraryView.swift */,
+				775B9D36266DDC89007AB084 /* LibraryViewModel.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -951,6 +954,7 @@
 				775373E3266773ED00AF8C82 /* AudioItemEventProducer.swift in Sources */,
 				775373DF266773ED00AF8C82 /* AudioItem.swift in Sources */,
 				775373B62667646300AF8C82 /* SpectrumView.swift in Sources */,
+				775B9D37266DDC89007AB084 /* LibraryViewModel.swift in Sources */,
 				77F4B92D265F9F730050D829 /* HasSubscriptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -110,17 +110,6 @@ extension Podcast {
         })
     }
 
-    static func collectedPodcastPublish() -> AnyPublisher<[Podcast], Error> {
-        guard let queue = DB.share.dbQueue else {
-            return .empty()
-        }
-
-        let publisher = ValueObservation
-            .tracking { db in try Podcast.filter(Columns.isCollected == true).fetchAll(db) }
-            .publisher(in: queue)
-        return publisher.eraseToAnyPublisher()
-    }
-
     static func fetch(id: String) -> Podcast? {
         return try? DB.share.dbQueue?.read({ db in
             try Podcast.fetchOne(db, key: id)

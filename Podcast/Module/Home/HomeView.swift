@@ -54,12 +54,17 @@ struct HomeView: View {
                 .padding(.horizontal, 10)
             }
         }
+        .onAppear(perform: onAppear)
         .fullScreenCover(isPresented: $isPresentSet, content: {
             SetView()
         })
         .fullScreenCover(isPresented: $isPresentSearch, content: {
             SearchView()
         })
+    }
+    
+    func onAppear() {
+        viewModel.request()
     }
 }
 

@@ -29,10 +29,12 @@ struct ContentView: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 
-                VStack {
-                    Spacer()
-                    MiniPlayerView()
-                        .frame(height: 120)
+                if !isHideMiniPlayerView {
+                    VStack {
+                        Spacer()
+                        MiniPlayerView()
+                            .frame(height: 120)
+                    }
                 }
             }
             .environmentObject(audioPlayerManager)
@@ -40,11 +42,11 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .onLoad(perform: onload)
+        .onAppear(perform: onAppear)
     }
 
-    func onload() {
-//        self.isHideMiniPlayerView = audioPlayerManager.currentEpisode == nil
+    func onAppear() {
+        self.isHideMiniPlayerView = audioPlayerManager.currentEpisode == nil
     }
 }
 

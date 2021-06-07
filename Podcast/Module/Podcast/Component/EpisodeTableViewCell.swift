@@ -5,14 +5,14 @@
 //  Created by liuliu on 2021/6/1.
 //
 
-import UIKit
-import PinLayout
-import Then
 import MGSwipeTableCell
+import PinLayout
+import SwiftUI
+import Then
 import Tiercel
+import UIKit
 
 class EpisodeTableViewCell: MGSwipeTableCell {
-
     let contentImageView = UIImageView().then {
         $0.cornerRadius = 8
         $0.contentMode = .scaleAspectFill
@@ -31,8 +31,8 @@ class EpisodeTableViewCell: MGSwipeTableCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = R.color.defaultBackground()
-        self.selectionStyle = .none
+        backgroundColor = R.color.defaultBackground()
+        selectionStyle = .none
         contentView.addSubviews([contentImageView, titleLabel, releaseDateLabel])
     }
 
@@ -66,7 +66,7 @@ class EpisodeTableViewCell: MGSwipeTableCell {
         titleLabel.text = model.title
         releaseDateLabel.text = secondsToHourMinutes(Int(model.duration))
     }
-    
+
     func updateTask(_ task: DownloadTask) {
         switch task.status {
         case .running:
@@ -75,18 +75,30 @@ class EpisodeTableViewCell: MGSwipeTableCell {
             break
         }
     }
-    
+
     private func secondsToHourMinutes(_ seconds: Int) -> String {
         let hour = seconds / 3600
         let minute = seconds / 60 % 60
-        
+
         if hour > 0 {
             return String(format: "%i h,%i min", hour, minute)
-        }else if minute > 0 {
+        } else if minute > 0 {
             return String(format: "%i min", minute)
-        }else {
+        } else {
             return String(format: "%i s", seconds)
         }
     }
+}
 
+struct EpisodeCellRepresentable: UIViewRepresentable {
+    var model: Episode
+
+    func makeUIView(context: Context) -> EpisodeTableViewCell {
+        let cell = EpisodeTableViewCell(style: .default, reuseIdentifier: "")
+        cell.configure(with: model)
+        return cell
+    }
+
+    func updateUIView(_ uiView: EpisodeTableViewCell, context: Context) {
+    }
 }
