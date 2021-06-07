@@ -28,12 +28,17 @@ class FilePath {
         }
     }
     
-    func save(episode url: String) -> String? {
-        let cache = Path(url)
+    func save(episode fileUrl: String) -> String? {
+        let cache = Path(fileUrl)
         guard cache.exists else {
             return nil
         }
         let path = cache.copyFileOverride(toDir: Directory.episode.path)
         return path.standardRawValue
+    }
+    
+    func delete(episode fileUrl: String) {
+        let path = Path(fileUrl)
+        try? path.deleteFile()
     }
 }

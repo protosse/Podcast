@@ -29,15 +29,11 @@ struct PodcastView: View {
         }
         .navigationBarHidden(true)
     }
-
-    func load() {
-        viewModel.fetchEpisode()
-    }
 }
 
 struct PodcastView_Previews: PreviewProvider {
     static var previews: some View {
-        var model = Podcast()
+        let model = Podcast()
         model.trackId = "1256399960"
         model.trackName = "直到地狱尽头"
         model.artistName = "doom"

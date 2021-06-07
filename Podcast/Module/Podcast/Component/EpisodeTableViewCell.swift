@@ -7,6 +7,7 @@
 
 import MGSwipeTableCell
 import PinLayout
+import SwiftMessages
 import SwiftUI
 import Then
 import Tiercel
@@ -29,11 +30,17 @@ class EpisodeTableViewCell: MGSwipeTableCell {
         $0.font = .systemFont(ofSize: 12)
     }
 
+    let downloadPercentLabel = UILabel().then {
+        $0.textColor = UIColor.white.withAlphaComponent(0.8)
+        $0.font = .systemFont(ofSize: 12)
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = R.color.defaultBackground()
         selectionStyle = .none
-        contentView.addSubviews([contentImageView, titleLabel, releaseDateLabel])
+        swipeBackgroundColor = .clear
+        contentView.addSubviews([contentImageView, titleLabel, releaseDateLabel, downloadPercentLabel])
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +57,7 @@ class EpisodeTableViewCell: MGSwipeTableCell {
             .marginLeft(16).marginTop(8).right(10).sizeToFit(.width)
 
         releaseDateLabel.pin.after(of: contentImageView, aligned: .bottom)
-            .marginLeft(16).marginBottom(8).right(10).sizeToFit(.width)
+            .marginLeft(16).marginBottom(8).sizeToFit()
     }
 
     override func layoutSubviews() {
@@ -69,54 +76,85 @@ class EpisodeTableViewCell: MGSwipeTableCell {
         contentImageView.kf.setImage(model.imageUrl)
         titleLabel.text = model.title
         releaseDateLabel.text = secondsToHourMinutes(Int(model.duration))
-        
-        let rightButton: UIButton
-        if model.fileUrl.isNilOrEmpty {
-            rightButton = MGSwipeButton(title: "Delete", icon: nil, backgroundColor: self.backgroundColor, callback: { cell -> Bool in
-                guard let cell = cell as? EpisodeTableViewCell else { return true }
-                cell.delete()
-                return true
-            })
-        }else {
-            rightButton = MGSwipeButton(title: "Download", icon: nil, backgroundColor: self.backgroundColor, callback: { cell -> Bool in
-                guard let cell = cell as? EpisodeTableViewCell else { return true }
-                cell.download()
-                return true
-            })
-        }
 
-        let buttons = [rightButton]
-        buttons.forEach {
-            $0.setTitleColor(.white, for: .normal)
+        if let task = self.task, task.status == .running {
+            downloadPercentLabel.isHidden = false
+            rightButtons = []
+        } else {
+            downloadPercentLabel.isHidden = true
+            let rightButton: UIButton
+            if !model.fileUrl.isNilOrEmpty {
+                rightButton = MGSwipeButton(title: "Delete", icon: nil, backgroundColor: backgroundColor, callback: { cell -> Bool in
+                    guard let cell = cell as? EpisodeTableViewCell else { return true }
+                    cell.delete()
+                    return true
+                })
+            } else {
+                rightButton = MGSwipeButton(title: "Download", icon: nil, backgroundColor: backgroundColor, callback: { cell -> Bool in
+                    guard let cell = cell as? EpisodeTableViewCell else { return true }
+                    cell.download()
+                    return true
+                })
+            }
+
+            let buttons = [rightButton]
+            buttons.forEach {
+                $0.setTitleColor(.white, for: .normal)
+            }
+            rightButtons = buttons
         }
-        self.rightButtons = buttons
-        self.swipeBackgroundColor = .clear
     }
 
     func download() {
-        guard var model = model, let url = model.streamUrl else { return }
+        guard let model = model, let url = model.streamUrl else { return }
         if let task = ITunesService.share.downloadManager.fetchTask(url) {
             if self.task == nil {
                 self.task = task
             }
+            switch task.status {
+            case .running:
+                break
+            default:
+                ITunesService.share.downloadManager.start(task)
+                configure(with: model)
+                refreshButtons(false)
+            }
         } else {
             task = ITunesService.share.downloadManager.download(url)
-            task?.progress { [weak self] t in
-                
-            }.success { [weak self] t in
-                guard let fileUrl = FilePath.share.save(episode: t.filePath) else { return }
-                model.fileUrl = fileUrl
-                model.updateDB()
-                self?.configure(with: model)
-            }.failure { [weak self] t in
-                
+            configure(with: model)
+            refreshButtons(false)
+        }
+
+        task?.progress { [weak self] t in
+            guard let self = self else { return }
+            self.downloadPercentLabel.text = "\(t.progress.fractionCompleted)"
+            self.downloadPercentLabel.pin
+                .after(of: self.releaseDateLabel, aligned: .center)
+                .right(10).sizeToFit()
+        }.success { [weak self] t in
+            guard let fileUrl = FilePath.share.save(episode: t.filePath) else { return }
+            model.fileUrl = fileUrl
+            model.updateDB()
+            self?.configure(with: model)
+            self?.refreshButtons(false)
+        }.failure { t in
+            let failed = MessageView.viewFromNib(layout: .cardView).then {
+                $0.configureTheme(.error)
+                $0.configureDropShadow()
+                $0.configureContent(title: "Error", body: t.error?.localizedDescription ?? "")
+                $0.button?.isHidden = true
             }
+            SwiftMessages.show(view: failed)
         }
     }
-    
+
     func delete() {
-        guard let fileUrl = model?.fileUrl else { return }
-        
+        guard let model = model, let fileUrl = model.fileUrl else { return }
+        FilePath.share.delete(episode: fileUrl)
+        model.fileUrl = nil
+        model.updateDB()
+        configure(with: model)
+        refreshButtons(false)
     }
 
     func updateTask(_ task: DownloadTask) {

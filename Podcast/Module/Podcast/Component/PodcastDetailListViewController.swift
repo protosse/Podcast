@@ -92,23 +92,6 @@ extension PodcastDetailListViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withClass: EpisodeTableViewCell.self)
         let model = dataSource[indexPath.row]
         cell.configure(with: model)
-
-        let download = MGSwipeButton(title: "Download", icon: nil, backgroundColor: cell.backgroundColor, callback: { cell -> Bool in
-            guard let cell = cell as? EpisodeTableViewCell, let url = model.streamUrl else { return true }
-            cell.download()
-            return true
-        })
-
-        let delete = MGSwipeButton(title: "Delete", icon: nil, backgroundColor: cell.backgroundColor, callback: { _ -> Bool in
-            true
-        })
-
-        let buttons = [delete, download]
-        buttons.forEach {
-            $0.setTitleColor(.white, for: .normal)
-        }
-        cell.rightButtons = buttons
-        cell.swipeBackgroundColor = .clear
         return cell
     }
 
