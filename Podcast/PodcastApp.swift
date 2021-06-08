@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let event = event, event.type == .remoteControl else { return }
         AudioPlayerManager.share.remoteControlReceived(with: event)
     }
+
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        if ITunesService.share.downloadManager.identifier == identifier {
+            ITunesService.share.downloadManager.completionHandler = completionHandler
+        }
+    }
 }
 
 @main

@@ -112,7 +112,8 @@ class PodcastDetailViewController: BaseViewController, HasSubscriptions {
         headerView.collectButton
             .publisher(for: .touchUpInside)
             .sink { [weak self] _ in
-                self?.viewModel.collectToggle()
+                guard let self = self, !self.viewModel.dataSource.isEmpty else { return }
+                self.viewModel.collectToggle()
             }
             .store(in: &subscriptions)
     }

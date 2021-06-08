@@ -87,7 +87,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         let view = HomeView()
-        var model = Podcast()
+        let model = Podcast()
         model.trackId = "1256399960"
         model.artworkUrl100 = "https://static.gcores.com/assets/52fcb59ad1e09abecec58d39da6731cb.jpg"
         view.viewModel.dataSource = [model]

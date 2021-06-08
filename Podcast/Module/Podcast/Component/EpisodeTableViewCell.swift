@@ -108,28 +108,28 @@ class EpisodeTableViewCell: MGSwipeTableCell {
     func download() {
         guard let model = model, let url = model.streamUrl else { return }
         if let task = ITunesService.share.downloadManager.fetchTask(url) {
-            if self.task == nil {
-                self.task = task
-            }
+            self.task = task
             switch task.status {
             case .running:
                 break
             default:
                 ITunesService.share.downloadManager.start(task)
-                configure(with: model)
+                downloadPercentLabel.isHidden = false
+                rightButtons = []
                 refreshButtons(false)
             }
         } else {
             task = ITunesService.share.downloadManager.download(url)
-            configure(with: model)
+            downloadPercentLabel.isHidden = false
+            rightButtons = []
             refreshButtons(false)
         }
 
         task?.progress { [weak self] t in
             guard let self = self else { return }
-            self.downloadPercentLabel.text = "\(t.progress.fractionCompleted)"
+            self.downloadPercentLabel.text = String(format: "%.2f%%", t.progress.fractionCompleted * 100)
             self.downloadPercentLabel.pin
-                .after(of: self.releaseDateLabel, aligned: .center)
+                .bottom(to: self.contentImageView.edge.bottom)
                 .right(10).sizeToFit()
         }.success { [weak self] t in
             guard let fileUrl = FilePath.share.save(episode: t.filePath) else { return }
@@ -138,19 +138,22 @@ class EpisodeTableViewCell: MGSwipeTableCell {
             self?.configure(with: model)
             self?.refreshButtons(false)
         }.failure { t in
-            let failed = MessageView.viewFromNib(layout: .cardView).then {
-                $0.configureTheme(.error)
-                $0.configureDropShadow()
-                $0.configureContent(title: "Error", body: t.error?.localizedDescription ?? "")
-                $0.button?.isHidden = true
+            if let error = t.error {
+                let failed = MessageView.viewFromNib(layout: .cardView).then {
+                    $0.configureTheme(.error)
+                    $0.configureDropShadow()
+                    $0.configureContent(title: "Error", body: error.localizedDescription)
+                    $0.button?.isHidden = true
+                }
+                SwiftMessages.show(view: failed)
             }
-            SwiftMessages.show(view: failed)
         }
     }
 
     func delete() {
-        guard let model = model, let fileUrl = model.fileUrl else { return }
+        guard let model = model, let fileUrl = model.fileUrl, let url = model.streamUrl else { return }
         FilePath.share.delete(episode: fileUrl)
+        ITunesService.share.downloadManager.remove(url)
         model.fileUrl = nil
         model.updateDB()
         configure(with: model)
