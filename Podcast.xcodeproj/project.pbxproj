@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7712B5DE2673631F001C4D92 /* UIWindow+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712B5DD2673631F001C4D92 /* UIWindow+Common.swift */; };
 		77534A572668DF4E008A1140 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77534A562668DF4E008A1140 /* DBManager.swift */; };
 		7753739126672AEF00AF8C82 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738326672AEF00AF8C82 /* GameViewController.swift */; };
 		7753739226672AEF00AF8C82 /* WaitingForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753738426672AEF00AF8C82 /* WaitingForTap.swift */; };
@@ -57,6 +58,7 @@
 		775373F3266773ED00AF8C82 /* AudioPlayerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373D8266773ED00AF8C82 /* AudioPlayerMode.swift */; };
 		775373F4266773ED00AF8C82 /* AudioPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775373D9266773ED00AF8C82 /* AudioPlayerState.swift */; };
 		775B9D37266DDC89007AB084 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775B9D36266DDC89007AB084 /* LibraryViewModel.swift */; };
+		775CAED72670AA6A00503BBA /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 775CAED62670AA6A00503BBA /* MBProgressHUD */; };
 		7769F1FB2665C5F200806BEA /* Kingfisher+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FA2665C5F200806BEA /* Kingfisher+Common.swift */; };
 		7769F1FD2665C6B000806BEA /* PodcastDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F1FC2665C6B000806BEA /* PodcastDetailHeaderView.swift */; };
 		7769F2012665FD2B00806BEA /* PodcastDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7769F2002665FD2B00806BEA /* PodcastDetailContentViewController.swift */; };
@@ -125,6 +127,7 @@
 		07016A6B480F07A48B0D57FF /* Pods-Podcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.debug.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.debug.xcconfig"; sourceTree = "<group>"; };
 		1BEB8A59892DE86A71F05A17 /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
 		3849D3574B1AAD9301A5F07E /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7712B5DD2673631F001C4D92 /* UIWindow+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Common.swift"; sourceTree = "<group>"; };
 		77534A562668DF4E008A1140 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		7753738326672AEF00AF8C82 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7753738426672AEF00AF8C82 /* WaitingForTap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingForTap.swift; sourceTree = "<group>"; };
@@ -245,6 +248,7 @@
 			files = (
 				B1EE611E2D6EC568A4E4BE90 /* Pods_Podcast.framework in Frameworks */,
 				778678CB26686D29006AA6CC /* Introspect in Frameworks */,
+				775CAED72670AA6A00503BBA /* MBProgressHUD in Frameworks */,
 				77AA48DB2664A357009D77AE /* WrappingHStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +463,7 @@
 				77898CE22664EFDD00C3AEFA /* UIColor+Gradient.swift */,
 				77898CE32664EFDD00C3AEFA /* UINavigationController+StatusBar.swift */,
 				7769F2042666323800806BEA /* UIView+Positioning.swift */,
+				7712B5DD2673631F001C4D92 /* UIWindow+Common.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -723,6 +728,7 @@
 			packageProductDependencies = (
 				77AA48DA2664A357009D77AE /* WrappingHStack */,
 				778678CA26686D28006AA6CC /* Introspect */,
+				775CAED62670AA6A00503BBA /* MBProgressHUD */,
 			);
 			productName = Podcast;
 			productReference = 77F4B899265F48540050D829 /* Podcast.app */;
@@ -754,6 +760,7 @@
 			packageReferences = (
 				77AA48D92664A357009D77AE /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 				778678C926686D28006AA6CC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				775CAED52670AA6A00503BBA /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
 			);
 			productRefGroup = 77F4B89A265F48540050D829 /* Products */;
 			projectDirPath = "";
@@ -959,6 +966,7 @@
 				77BD0AA626612404002A0A73 /* PodcastCell.swift in Sources */,
 				7753739226672AEF00AF8C82 /* WaitingForTap.swift in Sources */,
 				77898CDB2664EE2900C3AEFA /* PodcastDetailViewController.swift in Sources */,
+				7712B5DE2673631F001C4D92 /* UIWindow+Common.swift in Sources */,
 				7769F1FB2665C5F200806BEA /* Kingfisher+Common.swift in Sources */,
 				7769F20C26663A6200806BEA /* RealtimeAnalyzer.swift in Sources */,
 				7753739C26672AEF00AF8C82 /* StatefulViewControllerImplementation.swift in Sources */,
@@ -1160,6 +1168,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		775CAED52670AA6A00503BBA /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com.cnpmjs.org/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		778678C926686D28006AA6CC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com.cnpmjs.org/siteline/SwiftUI-Introspect.git";
@@ -1179,6 +1195,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		775CAED62670AA6A00503BBA /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 775CAED52670AA6A00503BBA /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
 		778678CA26686D28006AA6CC /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 778678C926686D28006AA6CC /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;

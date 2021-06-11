@@ -12,6 +12,7 @@ PODS:
   - JXSegmentedView (1.2.7)
   - Kingfisher (6.3.0)
   - lottie-ios (3.2.3)
+  - MBProgressHUD (1.2.0)
   - MGSwipeTableCell (1.6.11)
   - MJRefresh (3.6.1)
   - Moya/Combine (15.0.0-alpha.1):
@@ -48,9 +49,6 @@ PODS:
   - SwifterSwift/StoreKit (5.2.0)
   - SwifterSwift/SwiftStdlib (5.2.0)
   - SwifterSwift/UIKit (5.2.0)
-  - SwiftMessages (9.0.2):
-    - SwiftMessages/App (= 9.0.2)
-  - SwiftMessages/App (9.0.2)
   - SwiftyBeaver (1.9.5)
   - SwiftyUserDefaults (5.3.0)
   - Then (2.7.0)
@@ -67,6 +65,7 @@ DEPENDENCIES:
   - JXSegmentedView
   - Kingfisher
   - lottie-ios
+  - MBProgressHUD
   - MGSwipeTableCell
   - MJRefresh
   - Moya/Combine (= 15.0.0-alpha.1)
@@ -74,7 +73,6 @@ DEPENDENCIES:
   - R.swift
   - ReachabilitySwift
   - SwifterSwift
-  - SwiftMessages
   - SwiftyBeaver
   - SwiftyUserDefaults
   - Then
@@ -93,6 +91,7 @@ SPEC REPOS:
     - JXSegmentedView
     - Kingfisher
     - lottie-ios
+    - MBProgressHUD
     - MGSwipeTableCell
     - MJRefresh
     - Moya
@@ -101,7 +100,6 @@ SPEC REPOS:
     - R.swift.Library
     - ReachabilitySwift
     - SwifterSwift
-    - SwiftMessages
     - SwiftyBeaver
     - SwiftyUserDefaults
     - Then
@@ -119,6 +117,7 @@ SPEC CHECKSUMS:
   JXSegmentedView: eb1cad21f57c2543c00c3e08b8fd3c7ca54f5acd
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
   MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
   Moya: 101c94dfb29289736ecd20fa6e82bea665e0671b
@@ -127,12 +126,11 @@ SPEC CHECKSUMS:
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SwifterSwift: 334181863c416882d97b7a60c05054d9e4d799e2
-  SwiftMessages: 77b847d1405f99046ffbd0d856bc7d73e6892686
   SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
   SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   Tiercel: 94b817f76bcdb7c86290b3dbd945048e94c6c153
 
-PODFILE CHECKSUM: 134debe402237f4a63fa2331f4730e5a3af9c8b4
+PODFILE CHECKSUM: 0c6ff8362e7e0b18a5cff767b6fac1e395c5d46d
 
 COCOAPODS: 1.10.1

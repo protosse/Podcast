@@ -6,7 +6,7 @@ target 'Podcast' do
     
     # UI
     pod 'lottie-ios'
-    pod 'SwiftMessages'
+    pod 'MBProgressHUD'
     pod 'JXPagingView/Paging'
     pod 'JXSegmentedView'
     pod 'PinLayout'

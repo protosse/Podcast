@@ -7,11 +7,11 @@
 
 import MGSwipeTableCell
 import PinLayout
-import SwiftMessages
 import SwiftUI
 import Then
 import Tiercel
 import UIKit
+import MBProgressHUD
 
 class EpisodeTableViewCell: MGSwipeTableCell {
     let contentImageView = UIImageView().then {
@@ -138,14 +138,15 @@ class EpisodeTableViewCell: MGSwipeTableCell {
             self?.configure(with: model)
             self?.refreshButtons(false)
         }.failure { t in
-            if let error = t.error {
-                let failed = MessageView.viewFromNib(layout: .cardView).then {
-                    $0.configureTheme(.error)
-                    $0.configureDropShadow()
-                    $0.configureContent(title: "Error", body: error.localizedDescription)
-                    $0.button?.isHidden = true
+            if let error = t.error, let window = UIWindow.key {
+                let hud = MBProgressHUD.showAdded(to: window, animated: true).then {
+                    $0.mode = .text
+                    $0.bezelView.style = .solidColor
+                    $0.detailsLabel.font = UIFont.systemFont(ofSize: 15)
+                    $0.detailsLabel.text = error.localizedDescription
+                    $0.removeFromSuperViewOnHide = true
                 }
-                SwiftMessages.show(view: failed)
+                hud.hide(animated: true, afterDelay: 2)
             }
         }
     }

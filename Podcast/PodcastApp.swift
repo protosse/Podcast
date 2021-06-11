@@ -5,7 +5,6 @@
 //  Created by liuliu on 2021/5/27.
 //
 
-import SwiftMessages
 import SwiftUI
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -52,8 +51,6 @@ struct PodcastApp: App {
 
     func customUI() {
         UITextField.appearance().keyboardAppearance = .dark
-        SwiftMessages.defaultConfig.presentationContext = .window(windowLevel: .normal)
-        SwiftMessages.defaultConfig.preferredStatusBarStyle = .lightContent
 
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().shadowImage = UIImage()
